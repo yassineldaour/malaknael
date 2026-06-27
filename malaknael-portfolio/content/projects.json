@@ -581,18 +581,6 @@
         }
       ],
       "order": 0
-    },
-    {
-      "slug": "h",
-      "title": "H",
-      "category": "Professional",
-      "tags": [],
-      "description": "",
-      "featured": false,
-      "coverSvg": "",
-      "coverImage": "",
-      "gallery": [],
-      "order": 18
     }
   ]
 }
