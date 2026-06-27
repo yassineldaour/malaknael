@@ -1,0 +1,90 @@
+# Sveltia CMS configuration for malaknael.com
+# ---------------------------------------------------------------------------
+# Two values below are filled in during the GitHub/login setup (Phase 3):
+#   backend.repo     -> "<your-github-username>/malaknael-portfolio"
+#   backend.base_url -> the URL of your Cloudflare login worker
+# ---------------------------------------------------------------------------
+
+backend:
+  name: github
+  repo: yassineldaour/malaknael-portfolio            # <-- set during setup
+  branch: main
+  base_url: https://REPLACE_ME_AUTH_WORKER           # <-- Cloudflare login worker URL
+
+# Uploaded images (new project covers / gallery photos) are stored here.
+media_folder: images/uploads
+public_folder: images/uploads
+
+# Friendly editor experience
+site_url: https://malaknael.com
+display_url: https://malaknael.com
+
+collections:
+  # ---- Landing page / global settings (single file) ----
+  - name: settings
+    label: Landing Page
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: settings
+        label: Landing & Site Settings
+        file: content/settings.json
+        fields:
+          - { name: headlineName, label: "Big headline name", widget: string }
+          - { name: tagline, label: "Small tag (e.g. Graphic Designer)", widget: string }
+          - { name: intro, label: "Intro paragraph", widget: text }
+          - { name: ctaText, label: "Button text", widget: string }
+          - name: stats
+            label: "Stats (the numbers)"
+            widget: list
+            fields:
+              - { name: num, label: Number, widget: string }
+              - { name: label, label: Label, widget: string }
+          - { name: heroCardLabel, label: "Hero card title", widget: string }
+          - { name: heroCardSub, label: "Hero card subtitle", widget: string }
+          - name: categories
+            label: "Categories"
+            widget: list
+            field: { name: category, label: Category, widget: string }
+
+  # ---- Projects (single file holding the list) ----
+  - name: projects
+    label: Projects
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: projects
+        label: All Projects
+        file: content/projects.json
+        fields:
+          - name: projects
+            label: Projects
+            label_singular: Project
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: slug, label: "Slug (unique id, lowercase, no spaces)", widget: string, pattern: ['^[a-z0-9-]+$', 'lowercase letters, numbers, dashes only'] }
+              - name: category
+                label: Category
+                widget: relation
+                collection: settings
+                file: settings
+                search_fields: [categories]
+                value_field: "categories.*"
+                display_fields: ["categories.*"]
+              - name: tags
+                label: Tags
+                widget: list
+                field: { name: tag, label: Tag, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: featured, label: "Featured (large card)", widget: boolean, default: false }
+              - { name: coverImage, label: "Cover image (leave empty to keep the drawn cover)", widget: image, required: false }
+              - name: gallery
+                label: "Gallery images (shown in the popup)"
+                widget: list
+                fields:
+                  - { name: image, label: Image, widget: image }
+                  - { name: caption, label: Caption, widget: string, required: false }
+              - { name: coverSvg, label: "Cover SVG (advanced — leave as is)", widget: text, required: false }
+              - { name: order, label: "Sort order", widget: number, required: false, value_type: int }

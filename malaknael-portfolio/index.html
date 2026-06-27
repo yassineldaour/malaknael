@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Malak Nael</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#111110;--grey-dark:#3a3a38;--grey-mid:#7a7a76;--grey-light:#c8c8c4;--cream:#f6f5f0;--white:#ffffff;--accent:#d4a853;--accent-soft:#f0e4c4}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:72px;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,0.06)}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:-0.5px;color:var(--black);text-decoration:none}
+    .nav-links{display:flex;gap:40px;list-style:none}
+    .nav-links a{font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-mid);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--black)}
+    section{padding:120px 60px}
+    .container{max-width:1180px;margin:0 auto}
+    #hero{min-height:100vh;display:flex;align-items:center;background:var(--cream);padding-top:72px}
+    .hero-inner{max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:100px;margin-bottom:28px}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,66px);line-height:1.1;letter-spacing:-1.5px;color:var(--black);margin-bottom:24px}
+    h1 em{font-style:italic;color:var(--grey-mid)}
+    #nameHeadline{display:flex;flex-wrap:wrap;cursor:default;user-select:none}
+    #nameHeadline .word{display:inline-flex;margin-right:0.22em}
+    #nameHeadline .ltr{display:inline-block;position:relative;transition:transform .25s cubic-bezier(.2,.8,.3,1.4),color .3s ease;transform-origin:50% 100%;will-change:transform}
+    #nameHeadline .ltr.in{animation:dropIn .6s cubic-bezier(.2,.8,.3,1.2) both}
+    @keyframes dropIn{0%{opacity:0;transform:translateY(-40px) rotate(-12deg)}100%{opacity:1;transform:translateY(0) rotate(0)}}
+    #nameHeadline .ltr.pop{color:var(--accent)!important}
+    .hero-text p{font-size:16px;line-height:1.85;color:var(--grey-dark);max-width:440px;margin-bottom:40px}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);padding:14px 28px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.25s}
+    .btn-primary:hover{background:var(--grey-dark);transform:translateY(-2px)}
+    .hero-stats{display:flex;gap:40px;margin-top:52px}
+    .stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--black);display:block}
+    .stat-label{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-mid)}
+    .hero-visual{position:relative}
+    .hero-card{background:var(--white);border-radius:24px;padding:40px;box-shadow:0 24px 64px rgba(0,0,0,0.08)}
+    .hero-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+    .hero-card-item{border-radius:14px;overflow:hidden}
+    .hero-card-item svg{display:block;width:100%;height:120px}
+    .hero-card-label{font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px}
+    .hero-card-sub{font-size:12px;color:var(--grey-mid)}
+    #work{background:var(--white)}
+    .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:72px}
+    .section-header h2{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);letter-spacing:-1px;line-height:1.15}
+    .section-header h2 em{font-style:italic;color:var(--accent)}
+    .category-block{margin-bottom:80px}
+    .category-label{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--grey-mid);margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid var(--grey-light)}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .project-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform 0.3s ease,box-shadow 0.3s ease}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,0.1)}
+    .project-card.large{grid-column:span 2}
+    .project-visual{width:100%;aspect-ratio:16/9;overflow:hidden}
+    .project-visual svg{width:100%;height:100%;display:block}
+    .project-visual img{width:100%;height:100%;object-fit:cover;display:block}
+    .project-info{padding:24px}
+    .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .project-tag{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:100px}
+    .project-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3}
+    .project-desc{font-size:13px;color:var(--grey-mid);line-height:1.65;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .project-arrow{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--black)}
+    /* ── MODAL ── */
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(10,10,10,0.82);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px}
+    .modal-overlay.open{display:flex;animation:fadeIn 0.22s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-box{background:var(--white);border-radius:28px;width:100%;max-width:900px;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp 0.28s cubic-bezier(.22,1,.36,1)}
+    @keyframes slideUp{from{transform:translateY(32px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .modal-close{position:sticky;top:16px;float:right;margin:16px 16px 0 0;width:38px;height:38px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;font-size:16px;color:var(--black);display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10}
+    .modal-close:hover{background:rgba(0,0,0,0.14)}
+    /* ── CAROUSEL ── */
+    .carousel{position:relative;background:#111;border-radius:24px 24px 0 0;overflow:hidden;user-select:none}
+    .slide{display:none;flex-direction:column;align-items:center;width:100%}
+    .slide.active{display:flex;animation:fadeSlide 0.3s ease}
+    @keyframes fadeSlide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+    .slide img{width:100%;max-height:520px;object-fit:contain;display:block;background:#111}
+    .slide-caption{width:100%;text-align:center;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);padding:10px 16px 12px;background:#111}
+    .slide-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:50%;width:44px;height:44px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:5}
+    .slide-btn:hover{background:rgba(255,255,255,0.28)}
+    .slide-btn.prev{left:16px}
+    .slide-btn.next{right:16px}
+    .dots{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5}
+    .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;padding:0;transition:background 0.2s,transform 0.2s}
+    .dot.active{background:#fff;transform:scale(1.3)}
+    .slide-counter{position:absolute;top:14px;right:16px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.55);background:rgba(0,0,0,0.35);padding:4px 10px;border-radius:100px;z-index:5}
+    .modal-body{padding:32px 36px 40px}
+    .modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+    .modal-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--black);margin-bottom:12px;line-height:1.25}
+    .modal-desc{font-size:15px;color:var(--grey-dark);line-height:1.75}
+    /* ── FOOTER ── */
+    footer{padding:48px 60px;border-top:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:space-between}
+    .footer-name{font-family:'Playfair Display',serif;font-size:18px}
+    .footer-copy{font-size:13px;color:var(--grey-mid)}
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr 1fr}
+      .project-card.large{grid-column:span 1}
+      nav{padding:0 24px}
+      section{padding:80px 24px}
+      footer{padding:32px 24px;flex-direction:column;gap:12px;text-align:center}
+    }
+    @media(max-width:600px){
+      .projects-grid{grid-template-columns:1fr}
+      .modal-body{padding:20px}
+    }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">Malak Nael</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+  </ul>
+</nav>
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="tag" id="heroTag">Graphic Designer</span>
+      <h1 id="nameHeadline" aria-label="Malak Nael"></h1>
+      <p id="heroIntro"></p>
+      <a class="btn-primary" id="heroCta" href="#work">View Projects &#8594;</a>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-grid">
+          <div class="hero-card-item"><svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="m1" patternUnits="userSpaceOnUse" width="80" height="80"><rect width="80" height="80" fill="#C4677B"/><polygon points="40,5 52,28 78,28 57,44 65,68 40,52 15,68 23,44 2,28 28,28" fill="none" stroke="#2CBFB2" stroke-width="2.5"/><circle cx="40" cy="40" r="12" fill="#E8A89B" opacity="0.7"/></pattern></defs><rect width="800" height="450" fill="url(#m1)"/><rect width="800" height="450" fill="rgba(40,20,30,0.35)"/><path d="M320 370 L320 200 Q400 120 480 200 L480 370 Z" fill="#E8A89B" opacity="0.55"/><rect x="355" y="290" width="90" height="80" fill="#2a1a20" opacity="0.5"/><polygon points="400,140 416,185 464,185 427,211 440,257 400,231 360,257 373,211 336,185 384,185" fill="#f6f5f0" opacity="0.9"/></svg></div>
+          <div class="hero-card-item"><svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="r1" patternUnits="userSpaceOnUse" width="40" height="40"><line x1="0" y1="0" x2="40" y2="0" stroke="#2a3040" stroke-width="0.5"/><line x1="0" y1="0" x2="0" y2="40" stroke="#2a3040" stroke-width="0.5"/></pattern></defs><rect width="800" height="450" fill="#161b2e"/><rect width="800" height="450" fill="url(#r1)"/><rect x="150" y="260" width="50" height="150" fill="#1e2840"/><rect x="220" y="200" width="70" height="210" fill="#222c44"/><rect x="310" y="130" width="90" height="280" fill="#263050"/><rect x="420" y="175" width="65" height="235" fill="#1e2840"/><rect x="505" y="230" width="80" height="170" fill="#222c44"/><rect x="310" y="130" width="90" height="5" fill="#d4a853"/><rect x="0" y="400" width="800" height="50" fill="#0d1020"/><rect x="260" y="195" width="280" height="2" fill="#d4a853" opacity="0.7"/></svg></div>
+          <div class="hero-card-item"><svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="k1" patternUnits="userSpaceOnUse" width="20" height="20"><line x1="0" y1="20" x2="20" y2="0" stroke="#e2ddd5" stroke-width="0.5"/></pattern></defs><rect width="800" height="450" fill="#f6f5f0"/><rect width="800" height="450" fill="url(#k1)"/><rect x="110" y="110" width="44" height="220" fill="#111110"/><rect x="110" y="110" width="215" height="44" fill="#111110"/><rect x="281" y="110" width="44" height="132" fill="#111110"/><rect x="154" y="242" width="171" height="44" fill="#111110"/><rect x="390" y="110" width="260" height="44" fill="#111110"/><rect x="390" y="110" width="44" height="220" fill="#111110"/><rect x="390" y="286" width="172" height="44" fill="#111110"/><rect x="518" y="154" width="44" height="176" fill="#111110"/><rect x="110" y="350" width="540" height="3" fill="#d4a853"/></svg></div>
+          <div class="hero-card-item"><svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="450" fill="#eceee4"/><ellipse cx="400" cy="580" rx="520" ry="210" fill="#c2d298" opacity="0.48"/><rect x="386" y="255" width="28" height="138" rx="9" fill="#6a4a28"/><ellipse cx="400" cy="218" rx="108" ry="85" fill="#4a7a28"/><ellipse cx="346" cy="240" rx="64" ry="52" fill="#5a8a30"/><ellipse cx="454" cy="235" rx="64" ry="52" fill="#5a8a30"/><ellipse cx="362" cy="228" rx="9" ry="13" fill="#2a3a18" transform="rotate(-15,362,228)"/><ellipse cx="424" cy="218" rx="9" ry="13" fill="#2a3a18" transform="rotate(10,424,218)"/><rect x="575" y="195" width="44" height="138" rx="7" fill="#8ab858" opacity="0.88"/></svg></div>
+        </div>
+        <div class="hero-card-label" id="heroCardLabel">Malak Nael — Graphic Designer</div>
+        <div class="hero-card-sub" id="heroCardSub">AUC · Cairo · Open to opportunities</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="work">
+  <div class="container">
+    <div class="section-header">
+      <h2>Selected <em>Work</em></h2>
+    </div>
+    <div id="categories"></div>
+  </div>
+</section>
+<div id="modals"></div>
+<footer>
+  <span class="footer-name">Malak Nael</span>
+  <span class="footer-copy">&copy; 2025 Malak Nael. All rights reserved.</span>
+</footer>
+<script>
+/* ───────── modal + carousel controls (work with generated DOM) ───────── */
+function openModal(pid){
+  var el=document.getElementById('modal-'+pid);
+  if(!el)return;
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e,overlay){
+  if(e.target===overlay){overlay.classList.remove('open');document.body.style.overflow='';}
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.open').forEach(function(m){
+      m.classList.remove('open');document.body.style.overflow='';
+    });
+  }
+});
+function changeSlide(pid,dir){
+  var car=document.getElementById('carousel-'+pid);
+  var slides=[].slice.call(car.querySelectorAll('.slide'));
+  var dots=[].slice.call(car.querySelectorAll('.dot'));
+  var cur=slides.findIndex(function(s){return s.classList.contains('active');});
+  var next=(cur+dir+slides.length)%slides.length;
+  slides[cur].classList.remove('active');
+  slides[next].classList.add('active');
+  if(dots.length){dots[cur].classList.remove('active');dots[next].classList.add('active');}
+  var ctr=car.querySelector('.slide-counter');
+  if(ctr)ctr.textContent=(next+1)+' / '+slides.length;
+}
+function goSlide(pid,idx){
+  var car=document.getElementById('carousel-'+pid);
+  var slides=[].slice.call(car.querySelectorAll('.slide'));
+  var dots=[].slice.call(car.querySelectorAll('.dot'));
+  var cur=slides.findIndex(function(s){return s.classList.contains('active');});
+  if(cur===idx)return;
+  slides[cur].classList.remove('active');
+  slides[idx].classList.add('active');
+  if(dots.length){dots[cur].classList.remove('active');dots[idx].classList.add('active');}
+  var ctr=car.querySelector('.slide-counter');
+  if(ctr)ctr.textContent=(idx+1)+' / '+slides.length;
+}
+function initSwipe(){
+  document.querySelectorAll('.carousel').forEach(function(car){
+    if(car.dataset.swipe)return; car.dataset.swipe='1';
+    var pid=car.id.replace('carousel-','');
+    var startX=0;
+    car.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    car.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-startX;
+      if(Math.abs(dx)>40)changeSlide(pid,dx<0?1:-1);
+    },{passive:true});
+  });
+}
+
+/* ───────── interactive name headline (re-init after render) ───────── */
+function initHeadline(name){
+  var h=document.getElementById('nameHeadline');
+  if(!h||h.dataset.built)return; h.dataset.built='1';
+  var words=(name||'Malak Nael').split(' ');
+  var letters=[];
+  words.forEach(function(w){
+    var ws=document.createElement('span');ws.className='word';
+    w.split('').forEach(function(ch){
+      var s=document.createElement('span');
+      s.className='ltr';s.textContent=ch;
+      ws.appendChild(s);letters.push(s);
+    });
+    h.appendChild(ws);
+  });
+  letters.forEach(function(s,i){
+    setTimeout(function(){s.classList.add('in');},120+i*70);
+  });
+  function onMove(e){
+    var mx=e.clientX,my=e.clientY;
+    letters.forEach(function(s){
+      var r=s.getBoundingClientRect();
+      var cx=r.left+r.width/2,cy=r.top+r.height/2;
+      var d=Math.hypot(mx-cx,my-cy);
+      var max=140;
+      if(d<max){
+        var f=(1-d/max);
+        var ang=Math.atan2(cy-my,cx-mx);
+        var push=f*22;
+        s.style.transform='translate('+Math.cos(ang)*push+'px,'+(Math.sin(ang)*push-f*14)+'px) scale('+(1+f*0.35)+') rotate('+(mx-cx)*0.04*f+'deg)';
+        s.style.color=f>0.45?'var(--accent)':'';
+      }else{
+        s.style.transform='';s.style.color='';
+      }
+    });
+  }
+  window.addEventListener('mousemove',onMove);
+  h.addEventListener('click',function(){
+    letters.forEach(function(s,i){
+      setTimeout(function(){
+        s.classList.add('pop');
+        s.style.transform='translateY(-18px) scale(1.3)';
+        setTimeout(function(){s.classList.remove('pop');s.style.transform='';},340);
+      },i*55);
+    });
+  });
+}
+
+/* ───────── render the site from content JSON ───────── */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+function cover(p){
+  if(p.coverImage){return '<img src="'+esc(p.coverImage)+'" alt="'+esc(p.title)+'" loading="lazy">';}
+  return p.coverSvg||'';
+}
+
+function cardHTML(p){
+  var tags=(p.tags||[]).map(function(t){return '<span class="project-tag">'+esc(t)+'</span>';}).join('');
+  return '<div class="project-card'+(p.featured?' large':'')+'" onclick="openModal(\''+esc(p.slug)+'\')">'
+    +'<div class="project-visual">'+cover(p)+'</div>'
+    +'<div class="project-info">'
+    +'<div class="project-tags">'+tags+'</div>'
+    +'<div class="project-title">'+esc(p.title)+'</div>'
+    +'<div class="project-desc">'+esc(p.description)+'</div>'
+    +'<div class="project-arrow">View project &#8594;</div>'
+    +'</div></div>';
+}
+
+function modalHTML(p){
+  var g=p.gallery||[];
+  if(!g.length){g=[{image:p.coverImage||'',caption:p.title}];}
+  var slides=g.map(function(s,i){
+    return '<div class="slide'+(i===0?' active':'')+'" data-index="'+i+'">'
+      +'<img src="'+esc(s.image)+'" alt="'+esc(s.caption||'')+'" loading="lazy"/>'
+      +'<div class="slide-caption">'+esc(s.caption||'')+'</div></div>';
+  }).join('');
+  var nav='', dots='';
+  if(g.length>1){
+    nav='<button class="slide-btn prev" aria-label="Previous" onclick="changeSlide(\''+esc(p.slug)+'\',-1)">&#8592;</button>'
+      +'<button class="slide-btn next" aria-label="Next" onclick="changeSlide(\''+esc(p.slug)+'\',1)">&#8594;</button>'
+      +'<span class="slide-counter">1 / '+g.length+'</span>';
+    dots='<div class="dots">'+g.map(function(s,i){
+      return '<button class="dot'+(i===0?' active':'')+'" aria-label="Slide '+(i+1)+'" onclick="goSlide(\''+esc(p.slug)+'\','+i+')"></button>';
+    }).join('')+'</div>';
+  }
+  var tags=(p.tags||[]).map(function(t){return '<span class="project-tag">'+esc(t)+'</span>';}).join('');
+  return '<div class="modal-overlay" id="modal-'+esc(p.slug)+'" onclick="closeModal(event,this)">'
+    +'<div class="modal-box">'
+    +'<button class="modal-close" aria-label="Close" onclick="document.getElementById(\'modal-'+esc(p.slug)+'\').classList.remove(\'open\');document.body.style.overflow=\'\'">&#x2715;</button>'
+    +'<div class="carousel" id="carousel-'+esc(p.slug)+'">'+slides+nav+dots+'</div>'
+    +'<div class="modal-body"><div class="modal-tags">'+tags+'</div>'
+    +'<div class="modal-title">'+esc(p.title)+'</div>'
+    +'<div class="modal-desc">'+esc(p.description)+'</div></div>'
+    +'</div></div>';
+}
+
+function render(settings,projects){
+  // landing
+  if(settings.tagline) document.getElementById('heroTag').textContent=settings.tagline;
+  document.getElementById('heroIntro').textContent=settings.intro||'';
+  document.getElementById('heroCta').innerHTML=esc(settings.ctaText||'View Projects')+' &#8594;';
+  if(settings.heroCardLabel) document.getElementById('heroCardLabel').textContent=settings.heroCardLabel;
+  if(settings.heroCardSub) document.getElementById('heroCardSub').textContent=settings.heroCardSub;
+  document.getElementById('heroStats').innerHTML=(settings.stats||[]).map(function(s){
+    return '<div><span class="stat-num">'+esc(s.num)+'</span><span class="stat-label">'+esc(s.label)+'</span></div>';
+  }).join('');
+
+  // sort projects by order if present
+  var list=projects.slice().sort(function(a,b){return (a.order||0)-(b.order||0);});
+
+  // categories: use settings.categories order, then any leftover categories
+  var cats=(settings.categories||[]).slice();
+  list.forEach(function(p){ if(p.category && cats.indexOf(p.category)<0) cats.push(p.category); });
+
+  var catsHTML=cats.map(function(cat){
+    var cards=list.filter(function(p){return p.category===cat;}).map(cardHTML).join('');
+    if(!cards)return '';
+    return '<div class="category-block"><div class="category-label">'+esc(cat)+'</div>'
+      +'<div class="projects-grid">'+cards+'</div></div>';
+  }).join('');
+  document.getElementById('categories').innerHTML=catsHTML;
+  document.getElementById('modals').innerHTML=list.map(modalHTML).join('');
+
+  initSwipe();
+  initHeadline(settings.headlineName);
+}
+
+Promise.all([
+  fetch('content/settings.json').then(function(r){return r.json();}),
+  fetch('content/projects.json').then(function(r){return r.json();})
+]).then(function(res){
+  var data=res[1]||{};
+  var projects=Array.isArray(data)?data:(data.projects||[]);
+  render(res[0]||{},projects);
+}).catch(function(err){
+  console.error('Failed to load content',err);
+  // fallback so the headline still animates even if content fails
+  initHeadline('Malak Nael');
+});
+</script>
+</body>
+</html>

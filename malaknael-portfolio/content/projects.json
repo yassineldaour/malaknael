@@ -1,0 +1,586 @@
+{
+  "projects": [
+    {
+      "slug": "rowad",
+      "title": "Rowad — RME Modern Engineering",
+      "category": "Professional",
+      "tags": [
+        "Branding",
+        "Print Design",
+        "Social Media"
+      ],
+      "description": "Designed the full company profile, banners, case studies, and social media templates for RME Modern Engineering a professional engineering company built around the tagline \"Building Realities.\"",
+      "featured": true,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"r1\" patternUnits=\"userSpaceOnUse\" width=\"40\" height=\"40\"><line x1=\"0\" y1=\"0\" x2=\"40\" y2=\"0\" stroke=\"#2a3040\" stroke-width=\"0.5\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"40\" stroke=\"#2a3040\" stroke-width=\"0.5\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"#161b2e\"/><rect width=\"800\" height=\"450\" fill=\"url(#r1)\"/><rect x=\"150\" y=\"260\" width=\"50\" height=\"150\" fill=\"#1e2840\"/><rect x=\"220\" y=\"200\" width=\"70\" height=\"210\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"280\" fill=\"#263050\"/><rect x=\"420\" y=\"175\" width=\"65\" height=\"235\" fill=\"#1e2840\"/><rect x=\"505\" y=\"230\" width=\"80\" height=\"170\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"5\" fill=\"#d4a853\"/><rect x=\"0\" y=\"400\" width=\"800\" height=\"50\" fill=\"#0d1020\"/><rect x=\"260\" y=\"195\" width=\"280\" height=\"2\" fill=\"#d4a853\" opacity=\"0.7\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/rowad/01.jpg",
+          "caption": "Cover"
+        },
+        {
+          "image": "images/gallery/rowad/02.jpg",
+          "caption": "Company Overview"
+        },
+        {
+          "image": "images/gallery/rowad/03.jpg",
+          "caption": "Brand Identity"
+        },
+        {
+          "image": "images/gallery/rowad/04.jpg",
+          "caption": "Logo System"
+        },
+        {
+          "image": "images/gallery/rowad/05.jpg",
+          "caption": "Color Palette"
+        },
+        {
+          "image": "images/gallery/rowad/06.jpg",
+          "caption": "Typography"
+        },
+        {
+          "image": "images/gallery/rowad/07.jpg",
+          "caption": "Banner Design"
+        },
+        {
+          "image": "images/gallery/rowad/08.jpg",
+          "caption": "Social Templates"
+        },
+        {
+          "image": "images/gallery/rowad/09.jpg",
+          "caption": "Case Study"
+        },
+        {
+          "image": "images/gallery/rowad/10.jpg",
+          "caption": "Team Profiles"
+        },
+        {
+          "image": "images/gallery/rowad/11.jpg",
+          "caption": "Application Mockup"
+        },
+        {
+          "image": "images/gallery/rowad/12.jpg",
+          "caption": "Final Spread"
+        }
+      ],
+      "order": 0
+    },
+    {
+      "slug": "lavore",
+      "title": "Lavore Branding",
+      "category": "Professional",
+      "tags": [
+        "Branding",
+        "Identity"
+      ],
+      "description": "Complete brand identity for Lavore logo, brand mark, color guide, typography guide, and final mockups. Built to feel elevated yet approachable across all touchpoints.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#1a1510\"/><circle cx=\"400\" cy=\"225\" r=\"320\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"0.5\" opacity=\"0.25\"/><circle cx=\"400\" cy=\"225\" r=\"210\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"0.5\" opacity=\"0.35\"/><circle cx=\"400\" cy=\"225\" r=\"110\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"0.5\" opacity=\"0.5\"/><rect x=\"373\" y=\"130\" width=\"7\" height=\"155\" fill=\"#d4a853\"/><rect x=\"373\" y=\"279\" width=\"88\" height=\"7\" fill=\"#d4a853\"/><rect x=\"210\" y=\"355\" width=\"55\" height=\"26\" rx=\"3\" fill=\"#d4a853\"/><rect x=\"277\" y=\"355\" width=\"55\" height=\"26\" rx=\"3\" fill=\"#f0e4c4\"/><rect x=\"344\" y=\"355\" width=\"55\" height=\"26\" rx=\"3\" fill=\"#8a7460\"/><rect x=\"411\" y=\"355\" width=\"55\" height=\"26\" rx=\"3\" fill=\"#2e2820\"/><rect x=\"478\" y=\"355\" width=\"55\" height=\"26\" rx=\"3\" fill=\"#f6f5f0\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/lavore/01.jpg",
+          "caption": "Brand Identity"
+        },
+        {
+          "image": "images/gallery/lavore/02.jpg",
+          "caption": "Color & Type"
+        },
+        {
+          "image": "images/gallery/lavore/03.jpg",
+          "caption": "Final Mockups"
+        }
+      ],
+      "order": 1
+    },
+    {
+      "slug": "archicoat",
+      "title": "ArchiCoat",
+      "category": "Professional",
+      "tags": [
+        "Logo Design",
+        "Content Creation"
+      ],
+      "description": "Logo design and social media content for ArchiCoat, an interior design brand. The concept draws from architectural arches, balancing precision with warmth.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#ede8df\"/><path d=\"M270 430 L270 210 Q400 100 530 210 L530 430 Z\" fill=\"none\" stroke=\"#2a2420\" stroke-width=\"3\"/><path d=\"M295 430 L295 220 Q400 125 505 220 L505 430 Z\" fill=\"#c8bca8\" opacity=\"0.35\"/><path d=\"M330 430 L330 234 Q400 155 470 234 L470 430 Z\" fill=\"none\" stroke=\"#8a7a6a\" stroke-width=\"1.5\"/><circle cx=\"400\" cy=\"120\" r=\"10\" fill=\"#2a2420\"/><circle cx=\"400\" cy=\"120\" r=\"5\" fill=\"#d4a853\"/><rect x=\"258\" y=\"210\" width=\"18\" height=\"220\" fill=\"#c8bca8\" opacity=\"0.55\"/><rect x=\"524\" y=\"210\" width=\"18\" height=\"220\" fill=\"#c8bca8\" opacity=\"0.55\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/archicoat/01.jpg",
+          "caption": "Logo Concept"
+        },
+        {
+          "image": "images/gallery/archicoat/02.jpg",
+          "caption": "Brand System"
+        },
+        {
+          "image": "images/gallery/archicoat/03.jpg",
+          "caption": "Social Content"
+        },
+        {
+          "image": "images/gallery/archicoat/04.jpg",
+          "caption": "Mockup"
+        }
+      ],
+      "order": 2
+    },
+    {
+      "slug": "ramadan",
+      "title": "Ramadan Campaigns",
+      "category": "Professional",
+      "tags": [
+        "Social Media",
+        "Campaigns"
+      ],
+      "description": "Ramadan Kareem posts designed for multiple clients tailored to each brand voice while sharing seasonal warmth.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><radialGradient id=\"rg1\" cx=\"50%\" cy=\"40%\" r=\"60%\"><stop offset=\"0%\" stop-color=\"#1a2a5e\"/><stop offset=\"100%\" stop-color=\"#06091c\"/></radialGradient></defs><rect width=\"800\" height=\"450\" fill=\"url(#rg1)\"/><circle cx=\"145\" cy=\"75\" r=\"2\" fill=\"#d4a853\" opacity=\"0.8\"/><circle cx=\"598\" cy=\"68\" r=\"2\" fill=\"#d4a853\" opacity=\"0.9\"/><circle cx=\"400\" cy=\"178\" r=\"88\" fill=\"#d4a853\" opacity=\"0.95\"/><circle cx=\"432\" cy=\"158\" r=\"73\" fill=\"#08101e\"/><polygon points=\"400,308 407,328 428,328 412,340 418,360 400,348 382,360 388,340 372,328 393,328\" fill=\"#d4a853\"/><path d=\"M0 418 Q100 378 200 418 Q300 378 400 418 Q500 378 600 418 Q700 378 800 418 L800 450 L0 450 Z\" fill=\"#060c1c\" opacity=\"0.8\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/ramadan/01.jpg",
+          "caption": "Campaign Brief"
+        },
+        {
+          "image": "images/gallery/ramadan/02.jpg",
+          "caption": "Visual Set 1"
+        },
+        {
+          "image": "images/gallery/ramadan/03.jpg",
+          "caption": "Visual Set 2"
+        }
+      ],
+      "order": 3
+    },
+    {
+      "slug": "qam",
+      "title": "QAM Marketing Agency",
+      "category": "Professional",
+      "tags": [
+        "Social Media",
+        "Marketing"
+      ],
+      "description": "Social media content and bold graphic posts for QAM featuring punchy messaging like \"Your Brand Called. It wants a Glow Up.\"",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#0c0c0c\"/><rect x=\"0\" y=\"196\" width=\"800\" height=\"6\" fill=\"#d4a853\"/><rect x=\"215\" y=\"122\" width=\"370\" height=\"130\" rx=\"14\" fill=\"#1a1a1a\"/><polygon points=\"272,252 305,252 288,282\" fill=\"#1a1a1a\"/><circle cx=\"136\" cy=\"338\" r=\"5\" fill=\"#d4a853\" opacity=\"0.7\"/><circle cx=\"178\" cy=\"338\" r=\"5\" fill=\"#d4a853\" opacity=\"0.45\"/><circle cx=\"664\" cy=\"92\" r=\"5\" fill=\"#d4a853\" opacity=\"0.7\"/><polygon points=\"548,222 600,196 600,248\" fill=\"#d4a853\" opacity=\"0.65\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/qam/01.jpg",
+          "caption": "Brand Overview"
+        },
+        {
+          "image": "images/gallery/qam/02.jpg",
+          "caption": "Social Posts"
+        },
+        {
+          "image": "images/gallery/qam/03.jpg",
+          "caption": "Campaign Content"
+        }
+      ],
+      "order": 4
+    },
+    {
+      "slug": "morocco",
+      "title": "Morocco: Revealing the Culture",
+      "category": "Academic",
+      "tags": [
+        "Illustration",
+        "Print Design"
+      ],
+      "description": "Six art-boards depicting Moroccan characters, buildings, and patterns using only basic shapes divided into puzzle cube faces that physically reveal the culture.",
+      "featured": true,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"m1\" patternUnits=\"userSpaceOnUse\" width=\"80\" height=\"80\"><rect width=\"80\" height=\"80\" fill=\"#C4677B\"/><polygon points=\"40,5 52,28 78,28 57,44 65,68 40,52 15,68 23,44 2,28 28,28\" fill=\"none\" stroke=\"#2CBFB2\" stroke-width=\"2.5\"/><circle cx=\"40\" cy=\"40\" r=\"12\" fill=\"#E8A89B\" opacity=\"0.7\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"url(#m1)\"/><rect width=\"800\" height=\"450\" fill=\"rgba(40,20,30,0.35)\"/><path d=\"M320 370 L320 200 Q400 120 480 200 L480 370 Z\" fill=\"#E8A89B\" opacity=\"0.55\"/><rect x=\"355\" y=\"290\" width=\"90\" height=\"80\" fill=\"#2a1a20\" opacity=\"0.5\"/><polygon points=\"400,140 416,185 464,185 427,211 440,257 400,231 360,257 373,211 336,185 384,185\" fill=\"#f6f5f0\" opacity=\"0.9\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/morocco/01.jpg",
+          "caption": "Cover"
+        },
+        {
+          "image": "images/gallery/morocco/02.jpg",
+          "caption": "Introduction"
+        },
+        {
+          "image": "images/gallery/morocco/03.jpg",
+          "caption": "Characters"
+        },
+        {
+          "image": "images/gallery/morocco/04.jpg",
+          "caption": "Architecture"
+        },
+        {
+          "image": "images/gallery/morocco/05.jpg",
+          "caption": "Pattern Work"
+        },
+        {
+          "image": "images/gallery/morocco/06.jpg",
+          "caption": "Puzzle Faces"
+        },
+        {
+          "image": "images/gallery/morocco/07.jpg",
+          "caption": "Color Study"
+        },
+        {
+          "image": "images/gallery/morocco/08.jpg",
+          "caption": "Final Spread"
+        }
+      ],
+      "order": 5
+    },
+    {
+      "slug": "3dfont",
+      "title": "3D Bilingual Font",
+      "category": "Academic",
+      "tags": [
+        "Typography",
+        "Material Lettering"
+      ],
+      "description": "A handcrafted English + Arabic typeface built from physical materials wire, clay, white glue, honey, and shampoo. Each letter constructed, photographed, and refined.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#ede8df\"/><polygon points=\"185,360 250,120 315,360\" fill=\"none\" stroke=\"#3a2a18\" stroke-width=\"16\" stroke-linejoin=\"round\"/><line x1=\"208\" y1=\"272\" x2=\"292\" y2=\"272\" stroke=\"#3a2a18\" stroke-width=\"16\" stroke-linecap=\"round\"/><rect x=\"410\" y=\"120\" width=\"16\" height=\"230\" rx=\"7\" fill=\"#c8702a\"/><path d=\"M426 120 Q514 120 514 192 Q514 244 426 244\" fill=\"none\" stroke=\"#c8702a\" stroke-width=\"16\" stroke-linecap=\"round\"/><path d=\"M426 244 Q525 244 525 296 Q525 350 426 350\" fill=\"none\" stroke=\"#c8702a\" stroke-width=\"16\" stroke-linecap=\"round\"/><path d=\"M580 285 Q638 235 698 285\" fill=\"none\" stroke=\"#2a5a3a\" stroke-width=\"12\" stroke-linecap=\"round\"/><circle cx=\"608\" cy=\"318\" r=\"8\" fill=\"#2a5a3a\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/3dfont/01.jpg",
+          "caption": "Concept Brief"
+        },
+        {
+          "image": "images/gallery/3dfont/02.jpg",
+          "caption": "Latin Letters A–F"
+        },
+        {
+          "image": "images/gallery/3dfont/03.jpg",
+          "caption": "Latin Letters G–Z"
+        },
+        {
+          "image": "images/gallery/3dfont/04.jpg",
+          "caption": "Arabic Letters"
+        },
+        {
+          "image": "images/gallery/3dfont/05.jpg",
+          "caption": "Mixed Display"
+        },
+        {
+          "image": "images/gallery/3dfont/06.jpg",
+          "caption": "Final Type Specimen"
+        }
+      ],
+      "order": 6
+    },
+    {
+      "slug": "kufic",
+      "title": "Kufic Composition",
+      "category": "Academic",
+      "tags": [
+        "Typography",
+        "Craft"
+      ],
+      "description": "Typography project creating Kufic script compositions, culminating in a final paper-woven output where letterforms become structural textile elements.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"k1\" patternUnits=\"userSpaceOnUse\" width=\"20\" height=\"20\"><line x1=\"0\" y1=\"20\" x2=\"20\" y2=\"0\" stroke=\"#e2ddd5\" stroke-width=\"0.5\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"#f6f5f0\"/><rect width=\"800\" height=\"450\" fill=\"url(#k1)\"/><rect x=\"110\" y=\"110\" width=\"44\" height=\"220\" fill=\"#111110\"/><rect x=\"110\" y=\"110\" width=\"215\" height=\"44\" fill=\"#111110\"/><rect x=\"281\" y=\"110\" width=\"44\" height=\"132\" fill=\"#111110\"/><rect x=\"154\" y=\"242\" width=\"171\" height=\"44\" fill=\"#111110\"/><rect x=\"390\" y=\"110\" width=\"260\" height=\"44\" fill=\"#111110\"/><rect x=\"390\" y=\"110\" width=\"44\" height=\"220\" fill=\"#111110\"/><rect x=\"390\" y=\"286\" width=\"172\" height=\"44\" fill=\"#111110\"/><rect x=\"518\" y=\"154\" width=\"44\" height=\"176\" fill=\"#111110\"/><rect x=\"110\" y=\"350\" width=\"540\" height=\"3\" fill=\"#d4a853\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/kufic/01.jpg",
+          "caption": "Research & Brief"
+        },
+        {
+          "image": "images/gallery/kufic/02.jpg",
+          "caption": "Composition Draft"
+        },
+        {
+          "image": "images/gallery/kufic/03.jpg",
+          "caption": "Grid Breakdown"
+        },
+        {
+          "image": "images/gallery/kufic/04.jpg",
+          "caption": "Letterform Study"
+        },
+        {
+          "image": "images/gallery/kufic/05.jpg",
+          "caption": "Paper Weave Process"
+        },
+        {
+          "image": "images/gallery/kufic/06.jpg",
+          "caption": "Final Woven Output"
+        }
+      ],
+      "order": 7
+    },
+    {
+      "slug": "typoposter",
+      "title": "Typographical Expansion Poster",
+      "category": "Academic",
+      "tags": [
+        "Typography",
+        "Poster Design"
+      ],
+      "description": "A bilingual poster around the word \"expansion / توسع\" exploring how the concept can be enacted through the physical tension of letterforms in space.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#111110\"/><line x1=\"400\" y1=\"225\" x2=\"42\" y2=\"42\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><line x1=\"400\" y1=\"225\" x2=\"400\" y2=\"0\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><line x1=\"400\" y1=\"225\" x2=\"758\" y2=\"42\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><line x1=\"400\" y1=\"225\" x2=\"800\" y2=\"225\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><line x1=\"400\" y1=\"225\" x2=\"42\" y2=\"408\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><line x1=\"400\" y1=\"225\" x2=\"0\" y2=\"225\" stroke=\"#f6f5f0\" stroke-width=\"0.8\" opacity=\"0.28\"/><circle cx=\"400\" cy=\"225\" r=\"42\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"2\"/><circle cx=\"400\" cy=\"225\" r=\"95\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"1.2\" opacity=\"0.65\"/><circle cx=\"400\" cy=\"225\" r=\"158\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"0.9\" opacity=\"0.45\"/><rect x=\"376\" y=\"198\" width=\"48\" height=\"7\" rx=\"3\" fill=\"#f6f5f0\"/><rect x=\"376\" y=\"222\" width=\"38\" height=\"7\" rx=\"3\" fill=\"#f6f5f0\"/><rect x=\"376\" y=\"246\" width=\"48\" height=\"7\" rx=\"3\" fill=\"#f6f5f0\"/><rect x=\"376\" y=\"192\" width=\"7\" height=\"61\" rx=\"3\" fill=\"#f6f5f0\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/typoposter/01.jpg",
+          "caption": "Concept & Research"
+        },
+        {
+          "image": "images/gallery/typoposter/02.jpg",
+          "caption": "Sketch Process"
+        },
+        {
+          "image": "images/gallery/typoposter/03.jpg",
+          "caption": "Bilingual Layout"
+        },
+        {
+          "image": "images/gallery/typoposter/04.jpg",
+          "caption": "Final Poster"
+        }
+      ],
+      "order": 8
+    },
+    {
+      "slug": "movieposter",
+      "title": "Movie Poster Series",
+      "category": "Academic",
+      "tags": [
+        "Poster Design",
+        "Concept"
+      ],
+      "description": "Two movie posters from one object a seashell from Gouna. \"The Deadly Seashell\" (horror) vs \"The Story of the Seashell\" (vibrant) — how concept transforms meaning.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"0\" y=\"0\" width=\"400\" height=\"450\" fill=\"#090909\"/><rect x=\"400\" y=\"0\" width=\"400\" height=\"450\" fill=\"#1aafa5\"/><line x1=\"375\" y1=\"0\" x2=\"425\" y2=\"450\" stroke=\"#f6f5f0\" stroke-width=\"2.5\"/><path d=\"M235 320 Q192 268 212 212 Q232 158 272 178 Q316 198 298 260 Q286 318 235 320 Z\" fill=\"#181818\" stroke=\"#444\" stroke-width=\"1.5\"/><circle cx=\"248\" cy=\"350\" r=\"6\" fill=\"#7a0808\"/><path d=\"M565 320 Q522 268 542 212 Q562 158 602 178 Q646 198 628 260 Q616 318 565 320 Z\" fill=\"#e8dcc8\" stroke=\"#1c5c58\" stroke-width=\"1.5\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/movieposter/01.jpg",
+          "caption": "The Deadly Seashell"
+        },
+        {
+          "image": "images/gallery/movieposter/02.jpg",
+          "caption": "The Story of the Seashell"
+        }
+      ],
+      "order": 9
+    },
+    {
+      "slug": "conceptbook",
+      "title": "Concept: Book",
+      "category": "Academic",
+      "tags": [
+        "Concept Design",
+        "Print"
+      ],
+      "description": "A board game and puzzle concept based on \"The Curious Incident of the Dog in the Night-time\" translating themes of logic and mystery into interactive physical play.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#f6f5f0\"/><rect x=\"148\" y=\"92\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#d4a853\"/><circle cx=\"211\" cy=\"92\" r=\"20\" fill=\"#d4a853\"/><circle cx=\"274\" cy=\"155\" r=\"20\" fill=\"#f6f5f0\"/><rect x=\"284\" y=\"92\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#111110\"/><circle cx=\"347\" cy=\"92\" r=\"20\" fill=\"#f6f5f0\"/><rect x=\"420\" y=\"92\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#c8bca8\"/><rect x=\"148\" y=\"232\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#2a3244\"/><rect x=\"284\" y=\"232\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#d4a853\"/><rect x=\"420\" y=\"232\" width=\"126\" height=\"126\" rx=\"5\" fill=\"#111110\"/><rect x=\"568\" y=\"162\" width=\"104\" height=\"104\" rx=\"5\" fill=\"none\" stroke=\"#d4a853\" stroke-width=\"2.5\" stroke-dasharray=\"9,6\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/conceptbook/01.jpg",
+          "caption": "Game Brief"
+        },
+        {
+          "image": "images/gallery/conceptbook/02.jpg",
+          "caption": "Board Design"
+        },
+        {
+          "image": "images/gallery/conceptbook/03.jpg",
+          "caption": "Card Components"
+        },
+        {
+          "image": "images/gallery/conceptbook/04.jpg",
+          "caption": "Final Assembly"
+        }
+      ],
+      "order": 10
+    },
+    {
+      "slug": "elia",
+      "title": "Elia — Olive Oil Branding",
+      "category": "Academic",
+      "tags": [
+        "Illustration",
+        "Branding"
+      ],
+      "description": "Brand illustrations for Elia olive oil, telling the production journey from grove to bottle through warm, handcrafted visuals.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#eceee4\"/><ellipse cx=\"400\" cy=\"580\" rx=\"520\" ry=\"210\" fill=\"#c2d298\" opacity=\"0.48\"/><rect x=\"386\" y=\"255\" width=\"28\" height=\"138\" rx=\"9\" fill=\"#6a4a28\"/><ellipse cx=\"400\" cy=\"218\" rx=\"108\" ry=\"85\" fill=\"#4a7a28\"/><ellipse cx=\"346\" cy=\"240\" rx=\"64\" ry=\"52\" fill=\"#5a8a30\"/><ellipse cx=\"454\" cy=\"235\" rx=\"64\" ry=\"52\" fill=\"#5a8a30\"/><ellipse cx=\"362\" cy=\"228\" rx=\"9\" ry=\"13\" fill=\"#2a3a18\" transform=\"rotate(-15,362,228)\"/><ellipse cx=\"424\" cy=\"218\" rx=\"9\" ry=\"13\" fill=\"#2a3a18\" transform=\"rotate(10,424,218)\"/><rect x=\"575\" y=\"195\" width=\"44\" height=\"138\" rx=\"7\" fill=\"#8ab858\" opacity=\"0.88\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/elia/01.jpg",
+          "caption": "Brand Concept"
+        },
+        {
+          "image": "images/gallery/elia/02.jpg",
+          "caption": "Grove to Bottle"
+        },
+        {
+          "image": "images/gallery/elia/03.jpg",
+          "caption": "Packaging Design"
+        },
+        {
+          "image": "images/gallery/elia/04.jpg",
+          "caption": "Final Mockups"
+        }
+      ],
+      "order": 11
+    },
+    {
+      "slug": "triangles",
+      "title": "The Power of Triangles",
+      "category": "Personal",
+      "tags": [
+        "Illustration",
+        "Personal"
+      ],
+      "description": "Oranges drawn entirely from triangles on a deep blue background exploring how organic form can emerge from the simplest geometric constraint.",
+      "featured": true,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#162050\"/><polygon points=\"400,132 444,202 356,202\" fill=\"#e8702a\"/><polygon points=\"356,202 444,202 464,272 336,272\" fill=\"#d86018\"/><polygon points=\"336,272 464,272 444,338 356,338\" fill=\"#e8702a\"/><polygon points=\"356,338 444,338 400,372\" fill=\"#d86018\"/><polygon points=\"400,132 464,158 464,202\" fill=\"#c05010\"/><polygon points=\"336,202 336,158 400,132\" fill=\"#f08838\"/><ellipse cx=\"400\" cy=\"124\" rx=\"7\" ry=\"16\" fill=\"#2a6a3a\" transform=\"rotate(-20,400,124)\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/triangles/01.jpg",
+          "caption": "Concept Sketch"
+        },
+        {
+          "image": "images/gallery/triangles/02.jpg",
+          "caption": "Process Study"
+        },
+        {
+          "image": "images/gallery/triangles/03.jpg",
+          "caption": "Final Illustration"
+        }
+      ],
+      "order": 12
+    },
+    {
+      "slug": "theswitch",
+      "title": "The Switch",
+      "category": "Personal",
+      "tags": [
+        "Poster Design",
+        "Personal"
+      ],
+      "description": "A geometric poster about life before and after university ordered blocks transform into scattered chaos before reaching a peak, visualizing personal growth.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#f6f5f0\"/><rect x=\"72\" y=\"112\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"72\" y=\"194\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"72\" y=\"276\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"154\" y=\"112\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"154\" y=\"194\" width=\"62\" height=\"62\" fill=\"#d4a853\"/><rect x=\"154\" y=\"276\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"236\" y=\"112\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"236\" y=\"194\" width=\"62\" height=\"62\" fill=\"#111110\"/><rect x=\"236\" y=\"276\" width=\"62\" height=\"62\" fill=\"#111110\"/><line x1=\"370\" y1=\"72\" x2=\"370\" y2=\"378\" stroke=\"#c8c8c4\" stroke-width=\"1.5\"/><polygon points=\"408,208 452,225 408,242\" fill=\"#d4a853\"/><rect x=\"510\" y=\"124\" width=\"54\" height=\"54\" fill=\"#111110\" transform=\"rotate(16,537,151)\"/><polygon points=\"678,114 700,72 722,114\" fill=\"#111110\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/theswitch/01.jpg",
+          "caption": "Before University"
+        },
+        {
+          "image": "images/gallery/theswitch/02.jpg",
+          "caption": "Final Poster"
+        }
+      ],
+      "order": 13
+    },
+    {
+      "slug": "food",
+      "title": "Food Around the World",
+      "category": "Personal",
+      "tags": [
+        "Illustration",
+        "Poster Design"
+      ],
+      "description": "A personal illustrated poster series celebrating global cuisine Sushi, Croissant, Italian Pizza, and Belgian Waffle through bold flat graphic design.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#faf6ef\"/><rect x=\"52\" y=\"68\" width=\"166\" height=\"314\" rx=\"10\" fill=\"#192258\"/><ellipse cx=\"135\" cy=\"205\" rx=\"52\" ry=\"32\" fill=\"#f6f5f0\"/><rect x=\"108\" y=\"196\" width=\"54\" height=\"19\" rx=\"5\" fill=\"#c8702a\"/><rect x=\"232\" y=\"68\" width=\"166\" height=\"314\" rx=\"10\" fill=\"#c88820\"/><path d=\"M282 248 Q318 182 354 248 Q342 278 318 284 Q294 278 282 248Z\" fill=\"#f0d48a\"/><rect x=\"412\" y=\"68\" width=\"166\" height=\"314\" rx=\"10\" fill=\"#c02828\"/><circle cx=\"495\" cy=\"225\" r=\"68\" fill=\"#f0d490\"/><circle cx=\"495\" cy=\"225\" r=\"56\" fill=\"#d84520\"/><rect x=\"592\" y=\"68\" width=\"166\" height=\"314\" rx=\"10\" fill=\"#c89828\"/><rect x=\"624\" y=\"158\" width=\"102\" height=\"102\" rx=\"5\" fill=\"#9a7220\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/food/01.jpg",
+          "caption": "Asian Cuisine"
+        },
+        {
+          "image": "images/gallery/food/02.jpg",
+          "caption": "European Cuisine"
+        },
+        {
+          "image": "images/gallery/food/03.jpg",
+          "caption": "American Cuisine"
+        },
+        {
+          "image": "images/gallery/food/04.jpg",
+          "caption": "Full Series"
+        }
+      ],
+      "order": 14
+    },
+    {
+      "slug": "lovedlost",
+      "title": "To Have Loved and Lost",
+      "category": "Personal",
+      "tags": [
+        "Poster Design",
+        "Personal"
+      ],
+      "description": "A bilingual English/Arabic poster in red and black minimal and emotional, exploring love and loss with restraint.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"450\" fill=\"#0e0404\"/><path d=\"M400,348 L218,202 Q175,138 218,106 Q261,74 303,106 Q345,138 400,202 Q455,138 497,106 Q539,74 582,106 Q625,138 582,202 Z\" fill=\"#8a0808\" opacity=\"0.82\"/><polyline points=\"400,202 389,244 412,276 395,318 400,348\" fill=\"none\" stroke=\"#0e0404\" stroke-width=\"5\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/lovedlost/01.jpg",
+          "caption": "Concept Brief"
+        },
+        {
+          "image": "images/gallery/lovedlost/02.jpg",
+          "caption": "Type Exploration"
+        },
+        {
+          "image": "images/gallery/lovedlost/03.jpg",
+          "caption": "Arabic Composition"
+        },
+        {
+          "image": "images/gallery/lovedlost/04.jpg",
+          "caption": "Final Poster"
+        }
+      ],
+      "order": 15
+    },
+    {
+      "slug": "printguide",
+      "title": "Print Guide / Aywa Ba2a",
+      "category": "Personal",
+      "tags": [
+        "Editorial",
+        "Infographic",
+        "Community"
+      ],
+      "description": "A community resource for Cairo creatives mapping print locations, printing dos and don’ts, and practical advice for students and independent designers.",
+      "featured": false,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"ht\" patternUnits=\"userSpaceOnUse\" width=\"14\" height=\"14\"><circle cx=\"7\" cy=\"7\" r=\"2.8\" fill=\"#111110\" opacity=\"0.13\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"#f6f5f0\"/><rect width=\"800\" height=\"450\" fill=\"url(#ht)\"/><rect x=\"72\" y=\"72\" width=\"295\" height=\"315\" rx=\"7\" fill=\"#2a5a3a\" opacity=\"0.1\"/><rect x=\"72\" y=\"72\" width=\"295\" height=\"38\" rx=\"7\" fill=\"#2a5a3a\"/><rect x=\"97\" y=\"132\" width=\"188\" height=\"9\" rx=\"4\" fill=\"#2a5a3a\" opacity=\"0.55\"/><rect x=\"433\" y=\"72\" width=\"295\" height=\"315\" rx=\"7\" fill=\"#8a1a1a\" opacity=\"0.1\"/><rect x=\"433\" y=\"72\" width=\"295\" height=\"38\" rx=\"7\" fill=\"#8a1a1a\"/><text x=\"219\" y=\"102\" text-anchor=\"middle\" font-size=\"19\" font-family=\"Georgia,serif\" fill=\"white\" font-weight=\"bold\">DOS</text><text x=\"580\" y=\"102\" text-anchor=\"middle\" font-size=\"19\" font-family=\"Georgia,serif\" fill=\"white\" font-weight=\"bold\">DONTS</text></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/printguide/01.jpg",
+          "caption": "Cover Page"
+        },
+        {
+          "image": "images/gallery/printguide/02.jpg",
+          "caption": "Dos & Don’ts"
+        },
+        {
+          "image": "images/gallery/printguide/03.jpg",
+          "caption": "Where to Print"
+        },
+        {
+          "image": "images/gallery/printguide/04.jpg",
+          "caption": "Location Guide"
+        },
+        {
+          "image": "images/gallery/printguide/05.jpg",
+          "caption": "Full Spread"
+        }
+      ],
+      "order": 16
+    }
+  ]
+}

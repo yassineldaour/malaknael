@@ -1,0 +1,23 @@
+{
+  "headlineName": "Malak Nael",
+  "tagline": "Graphic Designer",
+  "intro": "Brand identity, typography, illustration, and editorial design built with intention, shaped by craft.",
+  "ctaText": "View Projects",
+  "stats": [
+    {
+      "num": "17",
+      "label": "Projects"
+    },
+    {
+      "num": "3",
+      "label": "Categories"
+    }
+  ],
+  "heroCardLabel": "Malak Nael — Graphic Designer",
+  "heroCardSub": "AUC · Cairo · Open to opportunities",
+  "categories": [
+    "Professional",
+    "Academic",
+    "Personal"
+  ]
+}

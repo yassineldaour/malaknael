@@ -1,0 +1,15 @@
+# Static site — no build step. Netlify publishes the repo root as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Always revalidate HTML and content JSON so edits show up promptly.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
