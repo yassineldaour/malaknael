@@ -1,71 +1,6 @@
 {
   "projects": [
     {
-      "slug": "rowad",
-      "title": "Rowad — RME Modern Engineering",
-      "category": "Professional",
-      "tags": [
-        "Branding",
-        "Print Design",
-        "Social Media"
-      ],
-      "description": "Designed the full company profile, banners, case studies, and social media templates for RME Modern Engineering a professional engineering company built around the tagline \"Building Realities.\"",
-      "featured": true,
-      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"r1\" patternUnits=\"userSpaceOnUse\" width=\"40\" height=\"40\"><line x1=\"0\" y1=\"0\" x2=\"40\" y2=\"0\" stroke=\"#2a3040\" stroke-width=\"0.5\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"40\" stroke=\"#2a3040\" stroke-width=\"0.5\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"#161b2e\"/><rect width=\"800\" height=\"450\" fill=\"url(#r1)\"/><rect x=\"150\" y=\"260\" width=\"50\" height=\"150\" fill=\"#1e2840\"/><rect x=\"220\" y=\"200\" width=\"70\" height=\"210\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"280\" fill=\"#263050\"/><rect x=\"420\" y=\"175\" width=\"65\" height=\"235\" fill=\"#1e2840\"/><rect x=\"505\" y=\"230\" width=\"80\" height=\"170\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"5\" fill=\"#d4a853\"/><rect x=\"0\" y=\"400\" width=\"800\" height=\"50\" fill=\"#0d1020\"/><rect x=\"260\" y=\"195\" width=\"280\" height=\"2\" fill=\"#d4a853\" opacity=\"0.7\"/></svg>",
-      "coverImage": "",
-      "gallery": [
-        {
-          "image": "images/gallery/rowad/01.jpg",
-          "caption": "Cover"
-        },
-        {
-          "image": "images/gallery/rowad/02.jpg",
-          "caption": "Company Overview"
-        },
-        {
-          "image": "images/gallery/rowad/03.jpg",
-          "caption": "Brand Identity"
-        },
-        {
-          "image": "images/gallery/rowad/04.jpg",
-          "caption": "Logo System"
-        },
-        {
-          "image": "images/gallery/rowad/05.jpg",
-          "caption": "Color Palette"
-        },
-        {
-          "image": "images/gallery/rowad/06.jpg",
-          "caption": "Typography"
-        },
-        {
-          "image": "images/gallery/rowad/07.jpg",
-          "caption": "Banner Design"
-        },
-        {
-          "image": "images/gallery/rowad/08.jpg",
-          "caption": "Social Templates"
-        },
-        {
-          "image": "images/gallery/rowad/09.jpg",
-          "caption": "Case Study"
-        },
-        {
-          "image": "images/gallery/rowad/10.jpg",
-          "caption": "Team Profiles"
-        },
-        {
-          "image": "images/gallery/rowad/11.jpg",
-          "caption": "Application Mockup"
-        },
-        {
-          "image": "images/gallery/rowad/12.jpg",
-          "caption": "Final Spread"
-        }
-      ],
-      "order": 0
-    },
-    {
       "slug": "lavore",
       "title": "Lavore Branding",
       "category": "Professional",
@@ -399,7 +334,7 @@
     },
     {
       "slug": "elia",
-      "title": "Elia — Olive Oil Branding",
+      "title": "Elia | Olive Oil Branding",
       "category": "Academic",
       "tags": [
         "Illustration",
@@ -581,6 +516,71 @@
         }
       ],
       "order": 16
+    },
+    {
+      "slug": "rowad",
+      "title": "Rowad — RME Modern Engineering",
+      "category": "Professional",
+      "tags": [
+        "Branding",
+        "Print Design",
+        "Social Media"
+      ],
+      "description": "Designed the full company profile, banners, case studies, and social media templates for RME Modern Engineering a professional engineering company built around the tagline \"Building Realities.\"",
+      "featured": true,
+      "coverSvg": "<svg viewBox=\"0 0 800 450\" xmlns=\"http://www.w3.org/2000/svg\"><defs><pattern id=\"r1\" patternUnits=\"userSpaceOnUse\" width=\"40\" height=\"40\"><line x1=\"0\" y1=\"0\" x2=\"40\" y2=\"0\" stroke=\"#2a3040\" stroke-width=\"0.5\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"40\" stroke=\"#2a3040\" stroke-width=\"0.5\"/></pattern></defs><rect width=\"800\" height=\"450\" fill=\"#161b2e\"/><rect width=\"800\" height=\"450\" fill=\"url(#r1)\"/><rect x=\"150\" y=\"260\" width=\"50\" height=\"150\" fill=\"#1e2840\"/><rect x=\"220\" y=\"200\" width=\"70\" height=\"210\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"280\" fill=\"#263050\"/><rect x=\"420\" y=\"175\" width=\"65\" height=\"235\" fill=\"#1e2840\"/><rect x=\"505\" y=\"230\" width=\"80\" height=\"170\" fill=\"#222c44\"/><rect x=\"310\" y=\"130\" width=\"90\" height=\"5\" fill=\"#d4a853\"/><rect x=\"0\" y=\"400\" width=\"800\" height=\"50\" fill=\"#0d1020\"/><rect x=\"260\" y=\"195\" width=\"280\" height=\"2\" fill=\"#d4a853\" opacity=\"0.7\"/></svg>",
+      "coverImage": "",
+      "gallery": [
+        {
+          "image": "images/gallery/rowad/01.jpg",
+          "caption": "Cover"
+        },
+        {
+          "image": "images/gallery/rowad/02.jpg",
+          "caption": "Company Overview"
+        },
+        {
+          "image": "images/gallery/rowad/03.jpg",
+          "caption": "Brand Identity"
+        },
+        {
+          "image": "images/gallery/rowad/04.jpg",
+          "caption": "Logo System"
+        },
+        {
+          "image": "images/gallery/rowad/05.jpg",
+          "caption": "Color Palette"
+        },
+        {
+          "image": "images/gallery/rowad/06.jpg",
+          "caption": "Typography"
+        },
+        {
+          "image": "images/gallery/rowad/07.jpg",
+          "caption": "Banner Design"
+        },
+        {
+          "image": "images/gallery/rowad/08.jpg",
+          "caption": "Social Templates"
+        },
+        {
+          "image": "images/gallery/rowad/09.jpg",
+          "caption": "Case Study"
+        },
+        {
+          "image": "images/gallery/rowad/10.jpg",
+          "caption": "Team Profiles"
+        },
+        {
+          "image": "images/gallery/rowad/11.jpg",
+          "caption": "Application Mockup"
+        },
+        {
+          "image": "images/gallery/rowad/12.jpg",
+          "caption": "Final Spread"
+        }
+      ],
+      "order": 0
     }
   ]
 }
