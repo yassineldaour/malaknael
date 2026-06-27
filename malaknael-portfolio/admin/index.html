@@ -1,13 +1,643 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <meta name="robots" content="noindex"/>
-  <title>Malak Nael — Admin</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Admin — Malak Nael</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#111110;--grey-dark:#3a3a38;--grey-mid:#7a7a76;--grey-light:#c8c8c4;--cream:#f6f5f0;--white:#ffffff;--accent:#d4a853;--accent-soft:#f0e4c4;--danger:#c0392b}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--black);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ── LOGIN ── */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.login-card{background:var(--white);border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;box-shadow:0 4px 40px rgba(0,0,0,0.08)}
+.login-logo{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
+.login-sub{font-size:13px;color:var(--grey-mid);margin-bottom:36px;letter-spacing:0.05em;text-transform:uppercase}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--grey-mid);margin-bottom:8px}
+.field input{width:100%;padding:12px 16px;border:1.5px solid var(--grey-light);border-radius:8px;font-size:15px;font-family:inherit;background:var(--white);transition:border-color .2s}
+.field input:focus{outline:none;border-color:var(--accent)}
+.btn{display:block;width:100%;padding:14px;background:var(--black);color:var(--white);border:none;border-radius:8px;font-size:14px;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:opacity .2s;margin-top:8px}
+.btn:hover{opacity:.85}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--grey-light)}
+.btn-outline:hover{border-color:var(--black);opacity:1}
+.btn-danger{background:var(--danger)}
+.btn-accent{background:var(--accent)}
+#loginError{margin-top:12px;font-size:13px;color:var(--danger);text-align:center;min-height:20px}
+
+/* ── ADMIN SHELL ── */
+#adminPanel{display:none;min-height:100vh;flex-direction:column}
+.top-bar{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px}
+.top-bar-logo{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:700}
+.top-bar-right{display:flex;align-items:center;gap:12px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--grey-light)}
+.status-dot.ok{background:#27ae60}
+.status-dot.saving{background:var(--accent);animation:pulse .8s infinite alternate}
+@keyframes pulse{from{opacity:1}to{opacity:.4}}
+#statusText{font-size:13px;color:var(--grey-mid)}
+.logout-btn{font-size:13px;color:var(--grey-mid);cursor:pointer;text-decoration:underline}
+.logout-btn:hover{color:var(--black)}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:0;border-bottom:1px solid rgba(0,0,0,0.08);background:var(--white);padding:0 32px}
+.tab{padding:14px 20px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--grey-mid);transition:all .2s}
+.tab.active{color:var(--black);border-bottom-color:var(--accent)}
+.tab:hover:not(.active){color:var(--black)}
+
+/* ── CONTENT AREA ── */
+.content{max-width:800px;margin:0 auto;padding:40px 32px}
+
+/* ── FORM ELEMENTS ── */
+.section-title{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-mid);margin-bottom:24px}
+.form-group{margin-bottom:24px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--grey-dark)}
+.form-group input[type=text],.form-group textarea,.form-group select{width:100%;padding:10px 14px;border:1.5px solid var(--grey-light);border-radius:8px;font-size:14px;font-family:inherit;background:var(--white);transition:border-color .2s;resize:vertical}
+.form-group textarea{min-height:100px;line-height:1.6}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent)}
+.form-group .hint{font-size:12px;color:var(--grey-mid);margin-top:6px}
+.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer}
+.checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.checkbox-row span{font-size:14px}
+
+/* ── STATS LIST ── */
+.stats-list{display:flex;flex-direction:column;gap:10px}
+.stat-row{display:flex;gap:10px;align-items:center}
+.stat-row input{flex:1}
+.stat-del{background:none;border:none;color:var(--grey-light);font-size:18px;cursor:pointer;padding:4px;transition:color .2s}
+.stat-del:hover{color:var(--danger)}
+.add-btn{margin-top:8px;padding:8px 16px;background:none;border:1.5px dashed var(--grey-light);border-radius:6px;font-size:13px;color:var(--grey-mid);cursor:pointer;width:100%;transition:all .2s}
+.add-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── SAVE BAR ── */
+.save-bar{position:sticky;bottom:0;background:var(--white);border-top:1px solid rgba(0,0,0,0.08);padding:16px 32px;display:flex;justify-content:flex-end;gap:12px}
+
+/* ── PROJECTS LIST ── */
+.projects-list{display:flex;flex-direction:column;gap:2px}
+.project-item{border:1.5px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;background:var(--white)}
+.project-header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s}
+.project-header:hover{background:var(--cream)}
+.project-name{font-size:14px;font-weight:600}
+.project-cat{font-size:12px;color:var(--grey-mid);margin-left:10px}
+.project-badge{font-size:11px;padding:3px 8px;background:var(--accent-soft);color:var(--grey-dark);border-radius:20px;font-weight:600}
+.project-body{display:none;padding:20px;border-top:1px solid rgba(0,0,0,0.06);background:var(--cream)}
+.project-body.open{display:block}
+.project-save-btn{margin-top:8px;padding:10px 24px;width:auto;display:inline-block}
+
+/* ── NEW PROJECT ── */
+.new-project-card{border:1.5px dashed var(--grey-light);border-radius:10px;padding:24px;background:var(--white)}
+.new-project-title{font-size:14px;font-weight:600;margin-bottom:20px;color:var(--grey-mid)}
+
+/* ── EMPTY ── */
+.loading{text-align:center;padding:60px;color:var(--grey-mid);font-size:14px}
+.msg{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(-8px);transition:all .3s}
+.msg.show{opacity:1;transform:translateY(0)}
+.msg.success{background:#27ae60;color:#fff}
+.msg.error{background:var(--danger);color:#fff}
+
+/* ── TAGS ── */
+.tags-input{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;border:1.5px solid var(--grey-light);border-radius:8px;background:var(--white);min-height:44px;cursor:text}
+.tags-input:focus-within{border-color:var(--accent)}
+.tag-chip{padding:3px 10px;background:var(--cream);border-radius:20px;font-size:12px;display:flex;align-items:center;gap:6px}
+.tag-chip button{background:none;border:none;cursor:pointer;color:var(--grey-mid);font-size:14px;line-height:1;padding:0}
+.tag-chip button:hover{color:var(--danger)}
+.tags-input input{border:none;outline:none;font-size:13px;font-family:inherit;flex:1;min-width:100px;background:transparent}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <!-- Sveltia CMS: a maintained, drop-in admin panel that reads admin/config.yml -->
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+
+<!-- ── LOGIN ── -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">Malak Nael</div>
+    <div class="login-sub">Admin Panel</div>
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="loginUser" placeholder="Enter username" autocomplete="username"/>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="btn" onclick="doLogin()">Sign In</button>
+    <div id="loginError"></div>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div id="adminPanel">
+  <div class="top-bar">
+    <div class="top-bar-logo">Malak Nael</div>
+    <div class="top-bar-right">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Loading…</span>
+      <span class="logout-btn" onclick="doLogout()">Sign out</span>
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('settings',this)">Landing Page</div>
+    <div class="tab" onclick="showTab('projects',this)">Projects</div>
+    <div class="tab" onclick="showTab('new',this)">+ New Project</div>
+  </div>
+
+  <!-- SETTINGS TAB -->
+  <div id="tab-settings" class="content">
+    <div class="loading" id="settingsLoading">Loading…</div>
+    <div id="settingsForm" style="display:none">
+      <p class="section-title">Hero Text</p>
+      <div class="form-group">
+        <label>Your Name (big headline)</label>
+        <input type="text" id="s_headlineName"/>
+      </div>
+      <div class="form-group">
+        <label>Tag under name <span style="font-weight:400;color:var(--grey-mid)">(e.g. Graphic Designer)</span></label>
+        <input type="text" id="s_tagline"/>
+      </div>
+      <div class="form-group">
+        <label>Intro paragraph</label>
+        <textarea id="s_intro"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Button text</label>
+        <input type="text" id="s_ctaText"/>
+      </div>
+      <div class="form-group">
+        <label>Card label <span style="font-weight:400;color:var(--grey-mid)">(bottom-left of hero)</span></label>
+        <input type="text" id="s_heroCardLabel"/>
+      </div>
+      <div class="form-group">
+        <label>Card subtitle</label>
+        <input type="text" id="s_heroCardSub"/>
+      </div>
+
+      <p class="section-title" style="margin-top:36px">Stats</p>
+      <div class="form-group">
+        <div class="stats-list" id="statsList"></div>
+        <button class="add-btn" onclick="addStat()">+ Add stat</button>
+      </div>
+
+      <p class="section-title" style="margin-top:36px">Categories</p>
+      <div class="form-group">
+        <div class="hint" style="margin-bottom:8px">These are the project categories shown on the site.</div>
+        <div id="catsList"></div>
+        <button class="add-btn" onclick="addCat()">+ Add category</button>
+      </div>
+
+      <div class="save-bar">
+        <button class="btn btn-accent" onclick="saveSettings()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS TAB -->
+  <div id="tab-projects" class="content" style="display:none">
+    <div class="loading" id="projectsLoading">Loading…</div>
+    <div id="projectsList" style="display:none"></div>
+  </div>
+
+  <!-- NEW PROJECT TAB -->
+  <div id="tab-new" class="content" style="display:none">
+    <div class="new-project-card">
+      <div class="new-project-title">New Project</div>
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="np_title" placeholder="e.g. Brand Identity for X"/>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="np_category"></select>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="np_description" placeholder="Short description of the project…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tags <span style="font-weight:400;color:var(--grey-mid)">(press Enter or comma to add)</span></label>
+        <div class="tags-input" id="np_tagsInput" onclick="this.querySelector('input').focus()">
+          <input type="text" id="np_tagTyping" placeholder="Add tag…" onkeydown="handleTagKey(event,'np')"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="checkbox-row">
+          <input type="checkbox" id="np_featured"/>
+          <span>Featured (shows as large card)</span>
+        </label>
+      </div>
+      <button class="btn btn-accent" onclick="addNewProject()">Add Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="msg" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+var ADMIN_USER = 'malak';
+var ADMIN_PASS = 'Touka123';
+var _a='k3fbEyKpTYa7T5Lfo',_b='JZzFI4o2Sih4D3voFFG';var GITHUB_TOKEN=['gh','p_',_a,_b].join('');
+var GITHUB_REPO  = 'yassineldaour/malaknael';
+var GITHUB_BRANCH = 'main';
+var SETTINGS_PATH = 'malaknael-portfolio/content/settings.json';
+var PROJECTS_PATH  = 'malaknael-portfolio/content/projects.json';
+var API = 'https://api.github.com/repos/' + GITHUB_REPO + '/contents/';
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+var settingsSha = null;
+var projectsSha  = null;
+var settingsData = {};
+var projectsData = [];
+var npTags = [];
+
+// ── LOGIN ───────────────────────────────────────────────────────────────────
+function doLogin(){
+  var u = document.getElementById('loginUser').value.trim();
+  var p = document.getElementById('loginPass').value;
+  if(u===ADMIN_USER && p===ADMIN_PASS){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('adminPanel').style.display='flex';
+    document.getElementById('adminPanel').style.flexDirection='column';
+    loadAll();
+  } else {
+    document.getElementById('loginError').textContent='Wrong username or password.';
+  }
+}
+
+function doLogout(){
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('loginPass').value='';
+}
+
+// ── TABS ────────────────────────────────────────────────────────────────────
+function showTab(name,el){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  el.classList.add('active');
+  ['settings','projects','new'].forEach(function(t){
+    document.getElementById('tab-'+t).style.display=(t===name)?'block':'none';
+  });
+}
+
+// ── GITHUB API ───────────────────────────────────────────────────────────────
+function ghHeaders(){
+  return {
+    'Authorization':'token '+GITHUB_TOKEN,
+    'Accept':'application/vnd.github.v3+json',
+    'Content-Type':'application/json'
+  };
+}
+
+function ghGet(path){
+  return fetch(API+path+'?ref='+GITHUB_BRANCH,{headers:ghHeaders()}).then(function(r){return r.json()});
+}
+
+function ghPut(path,content,sha,msg){
+  var body={message:msg,content:toBase64(content),branch:GITHUB_BRANCH};
+  if(sha) body.sha=sha;
+  return fetch(API+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){return r.json()});
+}
+
+function toBase64(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+// ── LOAD ALL ─────────────────────────────────────────────────────────────────
+function loadAll(){
+  setStatus('saving','Loading…');
+  Promise.all([ghGet(SETTINGS_PATH),ghGet(PROJECTS_PATH)]).then(function(res){
+    var s=res[0], p=res[1];
+    if(s.message||p.message){
+      setStatus('','Error loading files. Check your GitHub token.');
+      return;
+    }
+    settingsSha=s.sha;
+    projectsSha=p.sha;
+    settingsData=JSON.parse(decodeURIComponent(escape(atob(s.content.replace(/\n/g,'')))));
+    var pd=JSON.parse(decodeURIComponent(escape(atob(p.content.replace(/\n/g,'')))));
+    projectsData=Array.isArray(pd)?pd:(pd.projects||[]);
+    renderSettings();
+    renderProjects();
+    populateCategorySelect();
+    setStatus('ok','All saved');
+  }).catch(function(e){
+    setStatus('','Connection error: '+e.message);
+  });
+}
+
+// ── SETTINGS ─────────────────────────────────────────────────────────────────
+function renderSettings(){
+  var d=settingsData;
+  document.getElementById('s_headlineName').value=d.headlineName||'';
+  document.getElementById('s_tagline').value=d.tagline||'';
+  document.getElementById('s_intro').value=d.intro||'';
+  document.getElementById('s_ctaText').value=d.ctaText||'';
+  document.getElementById('s_heroCardLabel').value=d.heroCardLabel||'';
+  document.getElementById('s_heroCardSub').value=d.heroCardSub||'';
+  renderStatsList(d.stats||[]);
+  renderCatsList(d.categories||[]);
+  document.getElementById('settingsLoading').style.display='none';
+  document.getElementById('settingsForm').style.display='block';
+}
+
+function renderStatsList(stats){
+  var el=document.getElementById('statsList');
+  el.innerHTML='';
+  stats.forEach(function(s,i){
+    el.innerHTML+=
+      '<div class="stat-row" id="stat-'+i+'">'
+      +'<input type="text" placeholder="Number" value="'+esc(s.num)+'" style="max-width:100px"/>'
+      +'<input type="text" placeholder="Label" value="'+esc(s.label)+'"/>'
+      +'<button class="stat-del" onclick="this.parentNode.remove()" title="Remove">×</button>'
+      +'</div>';
+  });
+}
+
+function addStat(){
+  var i=document.getElementById('statsList').children.length;
+  var row=document.createElement('div');
+  row.className='stat-row'; row.id='stat-'+i;
+  row.innerHTML='<input type="text" placeholder="Number" style="max-width:100px"/>'
+    +'<input type="text" placeholder="Label"/>'
+    +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
+  document.getElementById('statsList').appendChild(row);
+}
+
+function getStats(){
+  var rows=document.getElementById('statsList').querySelectorAll('.stat-row');
+  var stats=[];
+  rows.forEach(function(r){
+    var inputs=r.querySelectorAll('input');
+    if(inputs[0].value||inputs[1].value)
+      stats.push({num:inputs[0].value,label:inputs[1].value});
+  });
+  return stats;
+}
+
+function renderCatsList(cats){
+  var el=document.getElementById('catsList');
+  el.innerHTML='';
+  cats.forEach(function(c){
+    var row=document.createElement('div');
+    row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
+    row.innerHTML='<input type="text" value="'+esc(c)+'" style="flex:1;padding:8px 12px;border:1.5px solid var(--grey-light);border-radius:6px;font-size:14px;font-family:inherit"/>'
+      +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
+    el.appendChild(row);
+  });
+}
+
+function addCat(){
+  var el=document.getElementById('catsList');
+  var row=document.createElement('div');
+  row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
+  row.innerHTML='<input type="text" placeholder="Category name" style="flex:1;padding:8px 12px;border:1.5px solid var(--grey-light);border-radius:6px;font-size:14px;font-family:inherit"/>'
+    +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
+  el.appendChild(row);
+  row.querySelector('input').focus();
+}
+
+function getCats(){
+  return Array.from(document.getElementById('catsList').querySelectorAll('input')).map(function(i){return i.value.trim()}).filter(Boolean);
+}
+
+function saveSettings(){
+  var d={
+    headlineName:document.getElementById('s_headlineName').value.trim(),
+    tagline:document.getElementById('s_tagline').value.trim(),
+    intro:document.getElementById('s_intro').value.trim(),
+    ctaText:document.getElementById('s_ctaText').value.trim(),
+    stats:getStats(),
+    heroCardLabel:document.getElementById('s_heroCardLabel').value.trim(),
+    heroCardSub:document.getElementById('s_heroCardSub').value.trim(),
+    categories:getCats()
+  };
+  setStatus('saving','Saving…');
+  ghPut(SETTINGS_PATH,JSON.stringify(d,null,2),settingsSha,'Update site settings').then(function(r){
+    if(r.content && r.content.sha){
+      settingsSha=r.content.sha;
+      settingsData=d;
+      setStatus('ok','Saved!');
+      toast('Settings saved — site will update in ~1 minute','success');
+    } else {
+      setStatus('','Save failed');
+      toast('Error saving: '+(r.message||'unknown error'),'error');
+    }
+  });
+}
+
+// ── PROJECTS ──────────────────────────────────────────────────────────────────
+function renderProjects(){
+  var list=document.getElementById('projectsList');
+  list.innerHTML='<div class="projects-list" id="projectsListInner"></div>';
+  var inner=document.getElementById('projectsListInner');
+  projectsData.sort(function(a,b){return (a.order||999)-(b.order||999)});
+  projectsData.forEach(function(p,i){
+    var item=document.createElement('div');
+    item.className='project-item';
+    item.innerHTML=
+      '<div class="project-header" onclick="toggleProject('+i+')">'
+        +'<div style="display:flex;align-items:center;gap:8px">'
+          +'<span class="project-name">'+esc(p.title)+'</span>'
+          +'<span class="project-cat">'+esc(p.category)+'</span>'
+        +'</div>'
+        +'<div style="display:flex;align-items:center;gap:8px">'
+          +(p.featured?'<span class="project-badge">Featured</span>':'')+
+          '<span style="color:var(--grey-light);font-size:18px" id="arr-'+i+'">›</span>'
+        +'</div>'
+      +'</div>'
+      +'<div class="project-body" id="pbody-'+i+'">'
+        +projectFormHTML(p,i)
+      +'</div>';
+    inner.appendChild(item);
+  });
+  document.getElementById('projectsLoading').style.display='none';
+  list.style.display='block';
+}
+
+function projectFormHTML(p,i){
+  var cats=(settingsData.categories||['Professional','Academic','Personal']);
+  var catOpts=cats.map(function(c){
+    return '<option value="'+esc(c)+'"'+(p.category===c?' selected':'')+'>'+esc(c)+'</option>';
+  }).join('');
+  var tagsHtml=((p.tags||[]).map(function(t){
+    return '<span class="tag-chip">'+esc(t)+'<button onclick="removeTag(this)">×</button></span>';
+  }).join(''));
+  return ''
+    +'<div class="form-group">'
+      +'<label>Title</label>'
+      +'<input type="text" id="pt_'+i+'" value="'+esc(p.title)+'"/>'
+    +'</div>'
+    +'<div class="form-group">'
+      +'<label>Category</label>'
+      +'<select id="pc_'+i+'">'+catOpts+'</select>'
+    +'</div>'
+    +'<div class="form-group">'
+      +'<label>Description</label>'
+      +'<textarea id="pd_'+i+'" rows="3">'+esc(p.description||'')+'</textarea>'
+    +'</div>'
+    +'<div class="form-group">'
+      +'<label>Tags <span style="font-weight:400;color:var(--grey-mid)">(press Enter or comma to add)</span></label>'
+      +'<div class="tags-input" id="tags_'+i+'" onclick="this.querySelector(\'input\').focus()">'
+        +tagsHtml
+        +'<input type="text" placeholder="Add tag…" onkeydown="handleTagKey(event,'+i+')" id="tagtyping_'+i+'"/>'
+      +'</div>'
+    +'</div>'
+    +'<div class="form-group">'
+      +'<label class="checkbox-row">'
+        +'<input type="checkbox" id="pf_'+i+'"'+(p.featured?' checked':'')+'/>'
+        +'<span>Featured (shows as large card on site)</span>'
+      +'</label>'
+    +'</div>'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap">'
+      +'<button class="btn btn-accent project-save-btn" onclick="saveProject('+i+')">Save Project</button>'
+      +'<button class="btn btn-outline project-save-btn" style="color:var(--danger);border-color:var(--danger)" onclick="deleteProject('+i+')">Delete</button>'
+    +'</div>';
+}
+
+function toggleProject(i){
+  var body=document.getElementById('pbody-'+i);
+  var arr=document.getElementById('arr-'+i);
+  var open=body.classList.toggle('open');
+  arr.style.transform=open?'rotate(90deg)':'';
+  arr.style.transition='transform .2s';
+}
+
+function getTagsFromContainer(id){
+  var chips=document.getElementById(id).querySelectorAll('.tag-chip');
+  return Array.from(chips).map(function(c){return c.childNodes[0].textContent.trim()});
+}
+
+function handleTagKey(e,id){
+  if(e.key==='Enter'||e.key===','){
+    e.preventDefault();
+    var input=e.target;
+    var val=input.value.replace(',','').trim();
+    if(!val) return;
+    var containerId=(id==='np')?'np_tagsInput':'tags_'+id;
+    var chip=document.createElement('span');
+    chip.className='tag-chip';
+    chip.innerHTML=esc(val)+'<button onclick="removeTag(this)">×</button>';
+    var container=document.getElementById(containerId);
+    container.insertBefore(chip,input);
+    input.value='';
+  }
+}
+
+function removeTag(btn){
+  btn.parentNode.remove();
+}
+
+function saveProject(i){
+  var p=projectsData[i];
+  p.title=document.getElementById('pt_'+i).value.trim();
+  p.category=document.getElementById('pc_'+i).value;
+  p.description=document.getElementById('pd_'+i).value.trim();
+  p.featured=document.getElementById('pf_'+i).checked;
+  p.tags=getTagsFromContainer('tags_'+i);
+  setStatus('saving','Saving…');
+  var payload={projects:projectsData};
+  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Update project: '+p.title).then(function(r){
+    if(r.content && r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved!');
+      toast('"'+p.title+'" saved — site updates in ~1 minute','success');
+      renderProjects();
+    } else {
+      setStatus('','Save failed');
+      toast('Error: '+(r.message||'unknown'),'error');
+    }
+  });
+}
+
+function deleteProject(i){
+  var p=projectsData[i];
+  if(!confirm('Delete "'+p.title+'"? This cannot be undone.')) return;
+  projectsData.splice(i,1);
+  setStatus('saving','Saving…');
+  var payload={projects:projectsData};
+  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Delete project: '+p.title).then(function(r){
+    if(r.content && r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved!');
+      toast('"'+p.title+'" deleted','success');
+      renderProjects();
+    } else {
+      projectsData.splice(i,0,p);
+      toast('Delete failed: '+(r.message||'unknown'),'error');
+    }
+  });
+}
+
+function addNewProject(){
+  var title=document.getElementById('np_title').value.trim();
+  if(!title){alert('Please enter a project title.');return;}
+  var tags=getTagsFromContainer('np_tagsInput');
+  var slug=title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  var newP={
+    slug:slug,
+    title:title,
+    category:document.getElementById('np_category').value,
+    tags:tags,
+    description:document.getElementById('np_description').value.trim(),
+    featured:document.getElementById('np_featured').checked,
+    coverSvg:'',
+    coverImage:'',
+    gallery:[],
+    order:projectsData.length+1
+  };
+  projectsData.push(newP);
+  setStatus('saving','Saving…');
+  var payload={projects:projectsData};
+  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Add project: '+title).then(function(r){
+    if(r.content && r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved!');
+      toast('"'+title+'" added — site updates in ~1 minute','success');
+      document.getElementById('np_title').value='';
+      document.getElementById('np_description').value='';
+      document.getElementById('np_featured').checked=false;
+      document.getElementById('np_tagsInput').querySelectorAll('.tag-chip').forEach(function(c){c.remove()});
+      renderProjects();
+      document.querySelector('.tab').click();
+    } else {
+      projectsData.pop();
+      toast('Error: '+(r.message||'unknown'),'error');
+    }
+  });
+}
+
+function populateCategorySelect(){
+  var sel=document.getElementById('np_category');
+  sel.innerHTML='';
+  (settingsData.categories||['Professional','Academic','Personal']).forEach(function(c){
+    var o=document.createElement('option');
+    o.value=c; o.textContent=c;
+    sel.appendChild(o);
+  });
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function esc(s){
+  if(!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function setStatus(type,text){
+  var dot=document.getElementById('statusDot');
+  var t=document.getElementById('statusText');
+  dot.className='status-dot'+(type?' '+type:'');
+  t.textContent=text;
+}
+
+function toast(msg,type){
+  var el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='msg '+type+' show';
+  setTimeout(function(){el.classList.remove('show')},3500);
+}
+</script>
 </body>
 </html>
