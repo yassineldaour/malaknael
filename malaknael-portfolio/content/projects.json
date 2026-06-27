@@ -581,18 +581,6 @@
         }
       ],
       "order": 0
-    },
-    {
-      "slug": "y",
-      "title": "Y",
-      "category": "Professional",
-      "tags": [],
-      "description": "",
-      "featured": false,
-      "coverSvg": "",
-      "coverImage": "images/uploads/y/cover.jpg",
-      "gallery": [],
-      "order": 18
     }
   ]
 }
