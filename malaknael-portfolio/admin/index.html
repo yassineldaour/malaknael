@@ -10,7 +10,7 @@
 :root{--black:#111110;--grey-dark:#3a3a38;--grey-mid:#7a7a76;--grey-light:#c8c8c4;--cream:#f6f5f0;--white:#ffffff;--accent:#d4a853;--accent-soft:#f0e4c4;--danger:#c0392b}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--black);min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* ── LOGIN ── */
+/* LOGIN */
 #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .login-card{background:var(--white);border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;box-shadow:0 4px 40px rgba(0,0,0,0.08)}
 .login-logo{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
@@ -24,11 +24,12 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--grey-light)}
 .btn-outline:hover{border-color:var(--black);opacity:1}
+.btn-sm{width:auto;display:inline-block;padding:8px 16px;font-size:13px;border-radius:6px}
 .btn-danger{background:var(--danger)}
 .btn-accent{background:var(--accent)}
 #loginError{margin-top:12px;font-size:13px;color:var(--danger);text-align:center;min-height:20px}
 
-/* ── ADMIN SHELL ── */
+/* ADMIN SHELL */
 #adminPanel{display:none;min-height:100vh;flex-direction:column}
 .top-bar{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px}
 .top-bar-logo{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:700}
@@ -41,41 +42,40 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
 .logout-btn{font-size:13px;color:var(--grey-mid);cursor:pointer;text-decoration:underline}
 .logout-btn:hover{color:var(--black)}
 
-/* ── TABS ── */
-.tabs{display:flex;gap:0;border-bottom:1px solid rgba(0,0,0,0.08);background:var(--white);padding:0 32px}
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid rgba(0,0,0,0.08);background:var(--white);padding:0 32px}
 .tab{padding:14px 20px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--grey-mid);transition:all .2s}
 .tab.active{color:var(--black);border-bottom-color:var(--accent)}
 .tab:hover:not(.active){color:var(--black)}
 
-/* ── CONTENT AREA ── */
+/* CONTENT */
 .content{max-width:800px;margin:0 auto;padding:40px 32px}
 
-/* ── FORM ELEMENTS ── */
+/* FORM */
 .section-title{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey-mid);margin-bottom:24px}
-.form-group{margin-bottom:24px}
+.form-group{margin-bottom:22px}
 .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--grey-dark)}
 .form-group input[type=text],.form-group textarea,.form-group select{width:100%;padding:10px 14px;border:1.5px solid var(--grey-light);border-radius:8px;font-size:14px;font-family:inherit;background:var(--white);transition:border-color .2s;resize:vertical}
-.form-group textarea{min-height:100px;line-height:1.6}
+.form-group textarea{min-height:90px;line-height:1.6}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent)}
-.form-group .hint{font-size:12px;color:var(--grey-mid);margin-top:6px}
+.form-group .hint{font-size:12px;color:var(--grey-mid);margin-top:5px}
 .checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer}
 .checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
-.checkbox-row span{font-size:14px}
 
-/* ── STATS LIST ── */
+/* STATS & CATS */
 .stats-list{display:flex;flex-direction:column;gap:10px}
 .stat-row{display:flex;gap:10px;align-items:center}
 .stat-row input{flex:1}
-.stat-del{background:none;border:none;color:var(--grey-light);font-size:18px;cursor:pointer;padding:4px;transition:color .2s}
+.stat-del{background:none;border:none;color:var(--grey-light);font-size:20px;cursor:pointer;padding:0 4px;transition:color .2s;line-height:1}
 .stat-del:hover{color:var(--danger)}
 .add-btn{margin-top:8px;padding:8px 16px;background:none;border:1.5px dashed var(--grey-light);border-radius:6px;font-size:13px;color:var(--grey-mid);cursor:pointer;width:100%;transition:all .2s}
 .add-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* ── SAVE BAR ── */
-.save-bar{position:sticky;bottom:0;background:var(--white);border-top:1px solid rgba(0,0,0,0.08);padding:16px 32px;display:flex;justify-content:flex-end;gap:12px}
+/* SAVE BAR */
+.save-bar{position:sticky;bottom:0;background:var(--white);border-top:1px solid rgba(0,0,0,0.08);padding:16px 32px;display:flex;justify-content:flex-end}
 
-/* ── PROJECTS LIST ── */
-.projects-list{display:flex;flex-direction:column;gap:2px}
+/* PROJECTS */
+.projects-list{display:flex;flex-direction:column;gap:6px}
 .project-item{border:1.5px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;background:var(--white)}
 .project-header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s}
 .project-header:hover{background:var(--cream)}
@@ -84,33 +84,53 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
 .project-badge{font-size:11px;padding:3px 8px;background:var(--accent-soft);color:var(--grey-dark);border-radius:20px;font-weight:600}
 .project-body{display:none;padding:20px;border-top:1px solid rgba(0,0,0,0.06);background:var(--cream)}
 .project-body.open{display:block}
-.project-save-btn{margin-top:8px;padding:10px 24px;width:auto;display:inline-block}
 
-/* ── NEW PROJECT ── */
-.new-project-card{border:1.5px dashed var(--grey-light);border-radius:10px;padding:24px;background:var(--white)}
-.new-project-title{font-size:14px;font-weight:600;margin-bottom:20px;color:var(--grey-mid)}
+/* IMAGE UPLOAD */
+.img-section{margin-bottom:22px}
+.img-section label{display:block;font-size:13px;font-weight:600;margin-bottom:10px;color:var(--grey-dark)}
+.cover-wrap{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.cover-preview{width:120px;height:90px;border-radius:8px;object-fit:cover;border:1.5px solid var(--grey-light);background:var(--white)}
+.cover-placeholder{width:120px;height:90px;border-radius:8px;border:1.5px dashed var(--grey-light);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--grey-mid);text-align:center;padding:8px}
+.upload-btn{padding:9px 18px;background:var(--white);border:1.5px solid var(--grey-light);border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--grey-dark)}
+.upload-btn:hover{border-color:var(--accent);color:var(--accent)}
+.upload-progress{font-size:12px;color:var(--accent);margin-top:6px}
 
-/* ── EMPTY ── */
+/* GALLERY GRID */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:10px}
+.gallery-thumb{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:1;background:var(--white);border:1.5px solid var(--grey-light)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-thumb .del-thumb{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.6);color:#fff;border:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .2s}
+.gallery-thumb .del-thumb:hover{background:var(--danger)}
+.gallery-thumb.uploading{opacity:.5}
+.gallery-add{border:1.5px dashed var(--grey-light);border-radius:8px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:11px;color:var(--grey-mid);transition:all .2s;background:var(--white)}
+.gallery-add:hover{border-color:var(--accent);color:var(--accent)}
+.gallery-add span{font-size:24px;margin-bottom:4px}
+
+/* TAGS */
+.tags-input{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;border:1.5px solid var(--grey-light);border-radius:8px;background:var(--white);min-height:44px;cursor:text}
+.tags-input:focus-within{border-color:var(--accent)}
+.tag-chip{padding:3px 10px;background:var(--cream);border-radius:20px;font-size:12px;display:flex;align-items:center;gap:5px}
+.tag-chip button{background:none;border:none;cursor:pointer;color:var(--grey-mid);font-size:13px;line-height:1;padding:0}
+.tag-chip button:hover{color:var(--danger)}
+.tags-input input{border:none;outline:none;font-size:13px;font-family:inherit;flex:1;min-width:100px;background:transparent}
+
+/* NEW PROJECT */
+.new-project-card{border:1.5px dashed var(--grey-light);border-radius:10px;padding:28px;background:var(--white)}
+
+/* MISC */
 .loading{text-align:center;padding:60px;color:var(--grey-mid);font-size:14px}
-.msg{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(-8px);transition:all .3s}
+.msg{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(-8px);transition:all .3s;max-width:320px}
 .msg.show{opacity:1;transform:translateY(0)}
 .msg.success{background:#27ae60;color:#fff}
 .msg.error{background:var(--danger);color:#fff}
-
-/* ── TAGS ── */
-.tags-input{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;border:1.5px solid var(--grey-light);border-radius:8px;background:var(--white);min-height:44px;cursor:text}
-.tags-input:focus-within{border-color:var(--accent)}
-.tag-chip{padding:3px 10px;background:var(--cream);border-radius:20px;font-size:12px;display:flex;align-items:center;gap:6px}
-.tag-chip button{background:none;border:none;cursor:pointer;color:var(--grey-mid);font-size:14px;line-height:1;padding:0}
-.tag-chip button:hover{color:var(--danger)}
-.tags-input input{border:none;outline:none;font-size:13px;font-family:inherit;flex:1;min-width:100px;background:transparent}
+input[type=file]{display:none}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<!-- ── LOGIN ── -->
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">Malak Nael</div>
@@ -128,7 +148,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
   </div>
 </div>
 
-<!-- ── ADMIN PANEL ── -->
+<!-- ADMIN -->
 <div id="adminPanel">
   <div class="top-bar">
     <div class="top-bar-logo">Malak Nael</div>
@@ -144,7 +164,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
     <div class="tab" onclick="showTab('new',this)">+ New Project</div>
   </div>
 
-  <!-- SETTINGS TAB -->
+  <!-- SETTINGS -->
   <div id="tab-settings" class="content">
     <div class="loading" id="settingsLoading">Loading…</div>
     <div id="settingsForm" style="display:none">
@@ -154,8 +174,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
         <input type="text" id="s_headlineName"/>
       </div>
       <div class="form-group">
-        <label>Tag under name <span style="font-weight:400;color:var(--grey-mid)">(e.g. Graphic Designer)</span></label>
-        <input type="text" id="s_tagline"/>
+        <label>Tag under name</label>
+        <input type="text" id="s_tagline" placeholder="e.g. Graphic Designer"/>
       </div>
       <div class="form-group">
         <label>Intro paragraph</label>
@@ -173,36 +193,32 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
         <label>Card subtitle</label>
         <input type="text" id="s_heroCardSub"/>
       </div>
-
-      <p class="section-title" style="margin-top:36px">Stats</p>
+      <p class="section-title" style="margin-top:32px">Stats</p>
       <div class="form-group">
         <div class="stats-list" id="statsList"></div>
         <button class="add-btn" onclick="addStat()">+ Add stat</button>
       </div>
-
-      <p class="section-title" style="margin-top:36px">Categories</p>
+      <p class="section-title" style="margin-top:32px">Categories</p>
       <div class="form-group">
-        <div class="hint" style="margin-bottom:8px">These are the project categories shown on the site.</div>
         <div id="catsList"></div>
         <button class="add-btn" onclick="addCat()">+ Add category</button>
       </div>
-
       <div class="save-bar">
-        <button class="btn btn-accent" onclick="saveSettings()">Save Changes</button>
+        <button class="btn btn-accent" style="width:auto;padding:12px 32px" onclick="saveSettings()">Save Changes</button>
       </div>
     </div>
   </div>
 
-  <!-- PROJECTS TAB -->
+  <!-- PROJECTS -->
   <div id="tab-projects" class="content" style="display:none">
     <div class="loading" id="projectsLoading">Loading…</div>
     <div id="projectsList" style="display:none"></div>
   </div>
 
-  <!-- NEW PROJECT TAB -->
+  <!-- NEW PROJECT -->
   <div id="tab-new" class="content" style="display:none">
     <div class="new-project-card">
-      <div class="new-project-title">New Project</div>
+      <p class="section-title">New Project</p>
       <div class="form-group">
         <label>Title</label>
         <input type="text" id="np_title" placeholder="e.g. Brand Identity for X"/>
@@ -213,12 +229,23 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
       </div>
       <div class="form-group">
         <label>Description</label>
-        <textarea id="np_description" placeholder="Short description of the project…"></textarea>
+        <textarea id="np_description" placeholder="Short description…"></textarea>
       </div>
       <div class="form-group">
-        <label>Tags <span style="font-weight:400;color:var(--grey-mid)">(press Enter or comma to add)</span></label>
+        <label>Tags <span style="font-weight:400;color:var(--grey-mid)">(press Enter or comma)</span></label>
         <div class="tags-input" id="np_tagsInput" onclick="this.querySelector('input').focus()">
           <input type="text" id="np_tagTyping" placeholder="Add tag…" onkeydown="handleTagKey(event,'np')"/>
+        </div>
+      </div>
+      <div class="img-section">
+        <label>Cover Photo</label>
+        <div class="cover-wrap">
+          <div class="cover-placeholder" id="np_coverPreview">No photo yet</div>
+          <div>
+            <button class="upload-btn" onclick="document.getElementById('np_coverFile').click()">Choose photo</button>
+            <input type="file" id="np_coverFile" accept="image/*" onchange="previewCover(this,'np_coverPreview',null)"/>
+            <div class="hint" style="margin-top:6px">JPG, PNG — recommended 800×600px</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -227,46 +254,50 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(
           <span>Featured (shows as large card)</span>
         </label>
       </div>
-      <button class="btn btn-accent" onclick="addNewProject()">Add Project</button>
+      <button class="btn btn-accent" style="width:auto;padding:12px 32px" onclick="addNewProject()">Add Project</button>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
+<!-- Hidden global file inputs -->
+<input type="file" id="galleryFilePicker" accept="image/*" multiple onchange="handleGalleryAdd(this)"/>
 <div class="msg" id="toast"></div>
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-var ADMIN_USER = 'malak';
-var ADMIN_PASS = 'Touka123';
-var _a='k3fbEyKpTYa7T5Lfo',_b='JZzFI4o2Sih4D3voFFG';var GITHUB_TOKEN=['gh','p_',_a,_b].join('');
-var GITHUB_REPO  = 'yassineldaour/malaknael';
-var GITHUB_BRANCH = 'main';
-var SETTINGS_PATH = 'malaknael-portfolio/content/settings.json';
-var PROJECTS_PATH  = 'malaknael-portfolio/content/projects.json';
-var API = 'https://api.github.com/repos/' + GITHUB_REPO + '/contents/';
+var ADMIN_USER='malak';
+var ADMIN_PASS='Touka123';
+var _a='k3fbEyKpTYa7T5Lfo',_b='JZzFI4o2Sih4D3voFFG';
+var GITHUB_TOKEN=['gh','p_',_a,_b].join('');
+var GITHUB_REPO='yassineldaour/malaknael';
+var GITHUB_BRANCH='main';
+var SETTINGS_PATH='malaknael-portfolio/content/settings.json';
+var PROJECTS_PATH='malaknael-portfolio/content/projects.json';
+var IMG_BASE='malaknael-portfolio/images/uploads';
+var API='https://api.github.com/repos/'+GITHUB_REPO+'/contents/';
 
 // ── STATE ───────────────────────────────────────────────────────────────────
-var settingsSha = null;
-var projectsSha  = null;
-var settingsData = {};
-var projectsData = [];
-var npTags = [];
+var settingsSha=null,projectsSha=null;
+var settingsData={},projectsData=[];
+var activeCoverFile={};   // {projectIndex: File}
+var activeGalleryFiles={}; // {projectIndex: [File,...]}
+var activeGalleryPending={}; // {projectIndex: [{file,previewUrl},...]}
+var currentGalleryTarget=null; // project index for gallery picker
 
 // ── LOGIN ───────────────────────────────────────────────────────────────────
 function doLogin(){
-  var u = document.getElementById('loginUser').value.trim();
-  var p = document.getElementById('loginPass').value;
-  if(u===ADMIN_USER && p===ADMIN_PASS){
+  var u=document.getElementById('loginUser').value.trim();
+  var p=document.getElementById('loginPass').value;
+  if(u===ADMIN_USER&&p===ADMIN_PASS){
     document.getElementById('loginScreen').style.display='none';
-    document.getElementById('adminPanel').style.display='flex';
-    document.getElementById('adminPanel').style.flexDirection='column';
+    var panel=document.getElementById('adminPanel');
+    panel.style.display='flex';
+    panel.style.flexDirection='column';
     loadAll();
   } else {
     document.getElementById('loginError').textContent='Wrong username or password.';
   }
 }
-
 function doLogout(){
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('adminPanel').style.display='none';
@@ -284,36 +315,49 @@ function showTab(name,el){
 
 // ── GITHUB API ───────────────────────────────────────────────────────────────
 function ghHeaders(){
-  return {
-    'Authorization':'token '+GITHUB_TOKEN,
-    'Accept':'application/vnd.github.v3+json',
-    'Content-Type':'application/json'
-  };
+  return{'Authorization':'token '+GITHUB_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
 }
-
 function ghGet(path){
   return fetch(API+path+'?ref='+GITHUB_BRANCH,{headers:ghHeaders()}).then(function(r){return r.json()});
 }
-
 function ghPut(path,content,sha,msg){
-  var body={message:msg,content:toBase64(content),branch:GITHUB_BRANCH};
-  if(sha) body.sha=sha;
+  var body={message:msg,content:toB64(content),branch:GITHUB_BRANCH};
+  if(sha)body.sha=sha;
   return fetch(API+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){return r.json()});
 }
+function ghPutBinary(path,base64,sha,msg){
+  var body={message:msg,content:base64,branch:GITHUB_BRANCH};
+  if(sha)body.sha=sha;
+  return fetch(API+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){return r.json()});
+}
+function toB64(str){return btoa(unescape(encodeURIComponent(str)))}
 
-function toBase64(str){
-  return btoa(unescape(encodeURIComponent(str)));
+// ── UPLOAD IMAGE ──────────────────────────────────────────────────────────────
+function uploadImage(file,repoPath){
+  return new Promise(function(resolve,reject){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var base64=e.target.result.split(',')[1];
+      // get existing sha if any
+      ghGet(repoPath).then(function(ex){
+        return ghPutBinary(repoPath,base64,ex.sha||null,'Upload image: '+repoPath.split('/').pop());
+      }).catch(function(){
+        return ghPutBinary(repoPath,base64,null,'Upload image: '+repoPath.split('/').pop());
+      }).then(function(r){
+        if(r.content){resolve();}
+        else{reject(new Error(r.message||'Upload failed'));}
+      }).catch(reject);
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
-// ── LOAD ALL ─────────────────────────────────────────────────────────────────
+// ── LOAD ──────────────────────────────────────────────────────────────────────
 function loadAll(){
   setStatus('saving','Loading…');
   Promise.all([ghGet(SETTINGS_PATH),ghGet(PROJECTS_PATH)]).then(function(res){
-    var s=res[0], p=res[1];
-    if(s.message||p.message){
-      setStatus('','Error loading files. Check your GitHub token.');
-      return;
-    }
+    var s=res[0],p=res[1];
+    if(s.message||p.message){setStatus('','Error: '+(s.message||p.message));return;}
     settingsSha=s.sha;
     projectsSha=p.sha;
     settingsData=JSON.parse(decodeURIComponent(escape(atob(s.content.replace(/\n/g,'')))));
@@ -322,13 +366,11 @@ function loadAll(){
     renderSettings();
     renderProjects();
     populateCategorySelect();
-    setStatus('ok','All saved');
-  }).catch(function(e){
-    setStatus('','Connection error: '+e.message);
-  });
+    setStatus('ok','Ready');
+  }).catch(function(e){setStatus('','Error: '+e.message);});
 }
 
-// ── SETTINGS ─────────────────────────────────────────────────────────────────
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
 function renderSettings(){
   var d=settingsData;
   document.getElementById('s_headlineName').value=d.headlineName||'';
@@ -342,159 +384,166 @@ function renderSettings(){
   document.getElementById('settingsLoading').style.display='none';
   document.getElementById('settingsForm').style.display='block';
 }
-
 function renderStatsList(stats){
-  var el=document.getElementById('statsList');
-  el.innerHTML='';
+  var el=document.getElementById('statsList');el.innerHTML='';
   stats.forEach(function(s,i){
-    el.innerHTML+=
-      '<div class="stat-row" id="stat-'+i+'">'
-      +'<input type="text" placeholder="Number" value="'+esc(s.num)+'" style="max-width:100px"/>'
+    var row=document.createElement('div');row.className='stat-row';
+    row.innerHTML='<input type="text" placeholder="Number" value="'+esc(s.num)+'" style="max-width:100px"/>'
       +'<input type="text" placeholder="Label" value="'+esc(s.label)+'"/>'
-      +'<button class="stat-del" onclick="this.parentNode.remove()" title="Remove">×</button>'
-      +'</div>';
+      +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
+    el.appendChild(row);
   });
 }
-
 function addStat(){
-  var i=document.getElementById('statsList').children.length;
-  var row=document.createElement('div');
-  row.className='stat-row'; row.id='stat-'+i;
+  var row=document.createElement('div');row.className='stat-row';
   row.innerHTML='<input type="text" placeholder="Number" style="max-width:100px"/>'
     +'<input type="text" placeholder="Label"/>'
     +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
   document.getElementById('statsList').appendChild(row);
 }
-
 function getStats(){
   var rows=document.getElementById('statsList').querySelectorAll('.stat-row');
-  var stats=[];
-  rows.forEach(function(r){
-    var inputs=r.querySelectorAll('input');
-    if(inputs[0].value||inputs[1].value)
-      stats.push({num:inputs[0].value,label:inputs[1].value});
-  });
-  return stats;
+  var s=[];
+  rows.forEach(function(r){var i=r.querySelectorAll('input');if(i[0].value||i[1].value)s.push({num:i[0].value,label:i[1].value});});
+  return s;
 }
-
 function renderCatsList(cats){
-  var el=document.getElementById('catsList');
-  el.innerHTML='';
+  var el=document.getElementById('catsList');el.innerHTML='';
   cats.forEach(function(c){
-    var row=document.createElement('div');
-    row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
+    var row=document.createElement('div');row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
     row.innerHTML='<input type="text" value="'+esc(c)+'" style="flex:1;padding:8px 12px;border:1.5px solid var(--grey-light);border-radius:6px;font-size:14px;font-family:inherit"/>'
       +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
     el.appendChild(row);
   });
 }
-
 function addCat(){
-  var el=document.getElementById('catsList');
-  var row=document.createElement('div');
-  row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
+  var row=document.createElement('div');row.style.cssText='display:flex;gap:8px;margin-bottom:8px';
   row.innerHTML='<input type="text" placeholder="Category name" style="flex:1;padding:8px 12px;border:1.5px solid var(--grey-light);border-radius:6px;font-size:14px;font-family:inherit"/>'
     +'<button class="stat-del" onclick="this.parentNode.remove()">×</button>';
-  el.appendChild(row);
+  document.getElementById('catsList').appendChild(row);
   row.querySelector('input').focus();
 }
-
 function getCats(){
-  return Array.from(document.getElementById('catsList').querySelectorAll('input')).map(function(i){return i.value.trim()}).filter(Boolean);
+  return Array.from(document.getElementById('catsList').querySelectorAll('input')).map(function(i){return i.value.trim();}).filter(Boolean);
 }
-
 function saveSettings(){
   var d={
-    headlineName:document.getElementById('s_headlineName').value.trim(),
-    tagline:document.getElementById('s_tagline').value.trim(),
-    intro:document.getElementById('s_intro').value.trim(),
-    ctaText:document.getElementById('s_ctaText').value.trim(),
-    stats:getStats(),
-    heroCardLabel:document.getElementById('s_heroCardLabel').value.trim(),
-    heroCardSub:document.getElementById('s_heroCardSub').value.trim(),
-    categories:getCats()
+    headlineName:v('s_headlineName'),tagline:v('s_tagline'),intro:v('s_intro'),
+    ctaText:v('s_ctaText'),stats:getStats(),heroCardLabel:v('s_heroCardLabel'),
+    heroCardSub:v('s_heroCardSub'),categories:getCats()
   };
   setStatus('saving','Saving…');
-  ghPut(SETTINGS_PATH,JSON.stringify(d,null,2),settingsSha,'Update site settings').then(function(r){
-    if(r.content && r.content.sha){
-      settingsSha=r.content.sha;
-      settingsData=d;
-      setStatus('ok','Saved!');
-      toast('Settings saved — site will update in ~1 minute','success');
-    } else {
-      setStatus('','Save failed');
-      toast('Error saving: '+(r.message||'unknown error'),'error');
-    }
+  ghPut(SETTINGS_PATH,JSON.stringify(d,null,2),settingsSha,'Update settings').then(function(r){
+    if(r.content&&r.content.sha){settingsSha=r.content.sha;settingsData=d;setStatus('ok','Saved');toast('Settings saved — site updates in ~1 min','success');}
+    else{setStatus('','Error');toast('Error: '+(r.message||'?'),'error');}
   });
 }
 
 // ── PROJECTS ──────────────────────────────────────────────────────────────────
 function renderProjects(){
   var list=document.getElementById('projectsList');
-  list.innerHTML='<div class="projects-list" id="projectsListInner"></div>';
-  var inner=document.getElementById('projectsListInner');
-  projectsData.sort(function(a,b){return (a.order||999)-(b.order||999)});
-  projectsData.forEach(function(p,i){
-    var item=document.createElement('div');
-    item.className='project-item';
-    item.innerHTML=
-      '<div class="project-header" onclick="toggleProject('+i+')">'
-        +'<div style="display:flex;align-items:center;gap:8px">'
-          +'<span class="project-name">'+esc(p.title)+'</span>'
-          +'<span class="project-cat">'+esc(p.category)+'</span>'
-        +'</div>'
-        +'<div style="display:flex;align-items:center;gap:8px">'
-          +(p.featured?'<span class="project-badge">Featured</span>':'')+
-          '<span style="color:var(--grey-light);font-size:18px" id="arr-'+i+'">›</span>'
-        +'</div>'
-      +'</div>'
-      +'<div class="project-body" id="pbody-'+i+'">'
-        +projectFormHTML(p,i)
-      +'</div>';
-    inner.appendChild(item);
-  });
+  list.innerHTML='<div class="projects-list" id="pListInner"></div>';
+  var inner=document.getElementById('pListInner');
+  projectsData.sort(function(a,b){return(a.order||999)-(b.order||999);});
+  projectsData.forEach(function(p,i){buildProjectItem(p,i,inner);});
   document.getElementById('projectsLoading').style.display='none';
   list.style.display='block';
 }
 
-function projectFormHTML(p,i){
-  var cats=(settingsData.categories||['Professional','Academic','Personal']);
-  var catOpts=cats.map(function(c){
-    return '<option value="'+esc(c)+'"'+(p.category===c?' selected':'')+'>'+esc(c)+'</option>';
-  }).join('');
-  var tagsHtml=((p.tags||[]).map(function(t){
-    return '<span class="tag-chip">'+esc(t)+'<button onclick="removeTag(this)">×</button></span>';
-  }).join(''));
-  return ''
-    +'<div class="form-group">'
-      +'<label>Title</label>'
-      +'<input type="text" id="pt_'+i+'" value="'+esc(p.title)+'"/>'
-    +'</div>'
-    +'<div class="form-group">'
-      +'<label>Category</label>'
-      +'<select id="pc_'+i+'">'+catOpts+'</select>'
-    +'</div>'
-    +'<div class="form-group">'
-      +'<label>Description</label>'
-      +'<textarea id="pd_'+i+'" rows="3">'+esc(p.description||'')+'</textarea>'
-    +'</div>'
-    +'<div class="form-group">'
-      +'<label>Tags <span style="font-weight:400;color:var(--grey-mid)">(press Enter or comma to add)</span></label>'
-      +'<div class="tags-input" id="tags_'+i+'" onclick="this.querySelector(\'input\').focus()">'
-        +tagsHtml
-        +'<input type="text" placeholder="Add tag…" onkeydown="handleTagKey(event,'+i+')" id="tagtyping_'+i+'"/>'
+function buildProjectItem(p,i,container){
+  var item=document.createElement('div');
+  item.className='project-item';
+  item.id='pitem-'+i;
+  item.innerHTML=
+    '<div class="project-header" onclick="toggleProject('+i+')">'
+      +'<div style="display:flex;align-items:center;gap:8px">'
+        +'<span class="project-name">'+esc(p.title)+'</span>'
+        +'<span class="project-cat">'+esc(p.category)+'</span>'
+      +'</div>'
+      +'<div style="display:flex;align-items:center;gap:8px">'
+        +(p.featured?'<span class="project-badge">Featured</span>':'')
+        +'<span style="color:var(--grey-light);font-size:20px;transition:transform .2s" id="arr-'+i+'">›</span>'
       +'</div>'
     +'</div>'
-    +'<div class="form-group">'
-      +'<label class="checkbox-row">'
-        +'<input type="checkbox" id="pf_'+i+'"'+(p.featured?' checked':'')+'/>'
-        +'<span>Featured (shows as large card on site)</span>'
-      +'</label>'
+    +'<div class="project-body" id="pbody-'+i+'">'+buildProjectForm(p,i)+'</div>';
+  if(container) container.appendChild(item);
+  return item;
+}
+
+function buildProjectForm(p,i){
+  var cats=(settingsData.categories||['Professional','Academic','Personal']);
+  var catOpts=cats.map(function(c){return'<option value="'+esc(c)+'"'+(p.category===c?' selected':'')+'>'+esc(c)+'</option>';}).join('');
+  var tagsHtml=(p.tags||[]).map(function(t){return tagChip(t);}).join('');
+
+  // Cover: existing coverImage or SVG note
+  var coverSrc=p.coverImage?('https://raw.githubusercontent.com/'+GITHUB_REPO+'/main/malaknael-portfolio/'+p.coverImage):'';
+  var coverEl=coverSrc
+    ?'<img class="cover-preview" id="cprev-'+i+'" src="'+coverSrc+'" alt="cover"/>'
+    :'<div class="cover-placeholder" id="cprev-'+i+'">'+(p.coverSvg?'SVG cover (existing)':'No photo')+'</div>';
+
+  // Gallery
+  var galleryHtml=buildGalleryHtml(p.gallery||[],i);
+
+  return ''
+    +'<div class="form-group"><label>Title</label>'
+      +'<input type="text" id="pt_'+i+'" value="'+esc(p.title)+'"/>'
     +'</div>'
-    +'<div style="display:flex;gap:10px;flex-wrap:wrap">'
-      +'<button class="btn btn-accent project-save-btn" onclick="saveProject('+i+')">Save Project</button>'
-      +'<button class="btn btn-outline project-save-btn" style="color:var(--danger);border-color:var(--danger)" onclick="deleteProject('+i+')">Delete</button>'
+    +'<div class="form-group"><label>Category</label>'
+      +'<select id="pc_'+i+'">'+catOpts+'</select>'
+    +'</div>'
+    +'<div class="form-group"><label>Description</label>'
+      +'<textarea id="pd_'+i+'" rows="3">'+esc(p.description||'')+'</textarea>'
+    +'</div>'
+    +'<div class="form-group"><label>Tags <span style="font-weight:400;color:var(--grey-mid)">(Enter or comma)</span></label>'
+      +'<div class="tags-input" id="tags_'+i+'" onclick="this.querySelector(\'input\').focus()">'
+        +tagsHtml
+        +'<input type="text" placeholder="Add tag…" onkeydown="handleTagKey(event,'+i+')"/>'
+      +'</div>'
+    +'</div>'
+    +'<div class="form-group"><label class="checkbox-row">'
+      +'<input type="checkbox" id="pf_'+i+'"'+(p.featured?' checked':'')+'"/>'
+      +'<span>Featured (large card)</span>'
+    +'</label></div>'
+
+    // Cover image
+    +'<div class="img-section"><label>Cover Photo</label>'
+      +'<div class="cover-wrap">'
+        +coverEl
+        +'<div>'
+          +'<button class="upload-btn" onclick="pickCover('+i+')">Change photo</button>'
+          +'<input type="file" id="cfile-'+i+'" accept="image/*" onchange="previewCover(this,\'cprev-'+i+'\','+i+')"/>'
+          +'<div id="cprog-'+i+'" class="upload-progress"></div>'
+          +'<div class="hint" style="margin-top:5px">JPG or PNG, min 800×600px</div>'
+        +'</div>'
+      +'</div>'
+    +'</div>'
+
+    // Gallery
+    +'<div class="img-section"><label>Gallery Photos</label>'
+      +'<div class="gallery-grid" id="gal-'+i+'">'
+        +galleryHtml
+        +'<div class="gallery-add" onclick="pickGallery('+i+')">'
+          +'<span>+</span><span>Add photos</span>'
+        +'</div>'
+      +'</div>'
+    +'</div>'
+
+    // Actions
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">'
+      +'<button class="btn btn-accent btn-sm" onclick="saveProject('+i+')">Save Project</button>'
+      +'<button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger)" onclick="deleteProject('+i+')">Delete</button>'
     +'</div>';
+}
+
+function buildGalleryHtml(gallery,i){
+  return gallery.map(function(item,gi){
+    var src=item&&item.image?item.image:item;
+    var fullSrc='https://raw.githubusercontent.com/'+GITHUB_REPO+'/main/malaknael-portfolio/'+src;
+    return '<div class="gallery-thumb" id="gthumb-'+i+'-'+gi+'">'
+      +'<img src="'+fullSrc+'" alt="gallery" loading="lazy"/>'
+      +'<button class="del-thumb" onclick="removeGalleryItem('+i+','+gi+')" title="Remove">×</button>'
+    +'</div>';
+  }).join('');
 }
 
 function toggleProject(i){
@@ -502,141 +551,270 @@ function toggleProject(i){
   var arr=document.getElementById('arr-'+i);
   var open=body.classList.toggle('open');
   arr.style.transform=open?'rotate(90deg)':'';
-  arr.style.transition='transform .2s';
 }
 
-function getTagsFromContainer(id){
-  var chips=document.getElementById(id).querySelectorAll('.tag-chip');
-  return Array.from(chips).map(function(c){return c.childNodes[0].textContent.trim()});
+// ── COVER PHOTO ───────────────────────────────────────────────────────────────
+function pickCover(i){
+  document.getElementById('cfile-'+i).click();
+}
+function previewCover(input,previewId,projectIdx){
+  if(!input.files||!input.files[0]) return;
+  var file=input.files[0];
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var prev=document.getElementById(previewId);
+    if(prev.tagName==='IMG'){
+      prev.src=e.target.result;
+    } else {
+      var img=document.createElement('img');
+      img.className='cover-preview';img.id=previewId;img.src=e.target.result;img.alt='cover';
+      prev.parentNode.replaceChild(img,prev);
+    }
+  };
+  reader.readAsDataURL(file);
+  if(projectIdx!==null) activeCoverFile[projectIdx]=file;
 }
 
+// ── GALLERY PHOTOS ────────────────────────────────────────────────────────────
+function pickGallery(i){
+  currentGalleryTarget=i;
+  var gfp=document.getElementById('galleryFilePicker');
+  gfp.value='';
+  gfp.click();
+}
+
+function handleGalleryAdd(input){
+  var i=currentGalleryTarget;
+  if(i===null||!input.files||!input.files.length) return;
+  if(!activeGalleryPending[i]) activeGalleryPending[i]=[];
+  var grid=document.getElementById('gal-'+i);
+  var addBtn=grid.querySelector('.gallery-add');
+  Array.from(input.files).forEach(function(file){
+    var idx=activeGalleryPending[i].length;
+    activeGalleryPending[i].push({file:file});
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var thumb=document.createElement('div');
+      thumb.className='gallery-thumb';
+      thumb.id='gpending-'+i+'-'+idx;
+      thumb.innerHTML='<img src="'+e.target.result+'" alt="new"/>'
+        +'<button class="del-thumb" onclick="removePendingGallery('+i+','+idx+')">×</button>'
+        +'<div style="position:absolute;bottom:4px;left:4px;font-size:9px;background:rgba(0,0,0,.5);color:#fff;padding:2px 5px;border-radius:3px">New</div>';
+      grid.insertBefore(thumb,addBtn);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removePendingGallery(i,idx){
+  if(activeGalleryPending[i]) activeGalleryPending[i][idx]=null;
+  var el=document.getElementById('gpending-'+i+'-'+idx);
+  if(el) el.remove();
+}
+
+function removeGalleryItem(i,gi){
+  if(!confirm('Remove this photo?')) return;
+  projectsData[i].gallery=projectsData[i].gallery||[];
+  projectsData[i].gallery.splice(gi,1);
+  var thumb=document.getElementById('gthumb-'+i+'-'+gi);
+  if(thumb) thumb.remove();
+  // renumber remaining thumbs
+  var grid=document.getElementById('gal-'+i);
+  grid.querySelectorAll('[id^="gthumb-'+i+'-"]').forEach(function(el,newIdx){
+    el.id='gthumb-'+i+'-'+newIdx;
+    var btn=el.querySelector('.del-thumb');
+    if(btn) btn.setAttribute('onclick','removeGalleryItem('+i+','+newIdx+')');
+  });
+}
+
+// ── SAVE PROJECT ──────────────────────────────────────────────────────────────
+function saveProject(i){
+  var p=projectsData[i];
+  p.title=v('pt_'+i);
+  p.category=document.getElementById('pc_'+i).value;
+  p.description=v('pd_'+i);
+  p.featured=document.getElementById('pf_'+i).checked;
+  p.tags=getTagsFrom('tags_'+i);
+
+  var slug=p.slug||p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  var uploads=[];
+  var prog=document.getElementById('cprog-'+i);
+
+  // Queue cover upload
+  if(activeCoverFile[i]){
+    var coverFile=activeCoverFile[i];
+    var ext=coverFile.name.split('.').pop().toLowerCase()||'jpg';
+    var coverRepoPath=IMG_BASE+'/'+slug+'/cover.'+ext;
+    uploads.push(function(){
+      if(prog) prog.textContent='Uploading cover…';
+      return uploadImage(coverFile,coverRepoPath).then(function(){
+        p.coverImage='images/uploads/'+slug+'/cover.'+ext;
+        p.coverSvg='';
+        delete activeCoverFile[i];
+      });
+    });
+  }
+
+  // Queue gallery uploads
+  var pending=(activeGalleryPending[i]||[]).filter(Boolean);
+  pending.forEach(function(item,k){
+    var file=item.file;
+    var ext=file.name.split('.').pop().toLowerCase()||'jpg';
+    var ts=Date.now()+k;
+    var galRepoPath=IMG_BASE+'/'+slug+'/gallery-'+ts+'.'+ext;
+    uploads.push(function(){
+      if(prog) prog.textContent='Uploading photo '+(k+1)+'/'+pending.length+'…';
+      return uploadImage(file,galRepoPath).then(function(){
+        if(!p.gallery) p.gallery=[];
+        p.gallery.push({image:'images/uploads/'+slug+'/gallery-'+ts+'.'+ext,caption:''});
+      });
+    });
+  });
+
+  setStatus('saving','Uploading…');
+
+  // Run uploads sequentially then save JSON
+  uploads.reduce(function(chain,fn){return chain.then(fn);},Promise.resolve()).then(function(){
+    activeGalleryPending[i]=[];
+    if(prog) prog.textContent='';
+    return ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Update project: '+p.title);
+  }).then(function(r){
+    if(r.content&&r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved');
+      toast('"'+p.title+'" saved — site updates in ~1 min','success');
+      renderProjects();
+    } else {
+      setStatus('','Error');
+      toast('Error: '+(r.message||'?'),'error');
+    }
+  }).catch(function(e){
+    setStatus('','Error');
+    toast('Upload failed: '+e.message,'error');
+  });
+}
+
+function deleteProject(i){
+  var p=projectsData[i];
+  if(!confirm('Delete "'+p.title+'"? Cannot be undone.')) return;
+  projectsData.splice(i,1);
+  setStatus('saving','Saving…');
+  ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Delete project: '+p.title).then(function(r){
+    if(r.content&&r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved');
+      toast('"'+p.title+'" deleted','success');
+      renderProjects();
+    } else {
+      projectsData.splice(i,0,p);
+      toast('Error: '+(r.message||'?'),'error');
+    }
+  });
+}
+
+// ── NEW PROJECT ───────────────────────────────────────────────────────────────
+var npCoverFile=null;
+function addNewProject(){
+  var title=v('np_title');
+  if(!title){alert('Please enter a title.');return;}
+  var slug=title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  var tags=getTagsFrom('np_tagsInput');
+  var newP={slug:slug,title:title,category:document.getElementById('np_category').value,
+    tags:tags,description:v('np_description'),featured:document.getElementById('np_featured').checked,
+    coverSvg:'',coverImage:'',gallery:[],order:projectsData.length+1};
+
+  var uploads=[];
+  if(npCoverFile){
+    var cf=npCoverFile;
+    var ext=cf.name.split('.').pop().toLowerCase()||'jpg';
+    var rp=IMG_BASE+'/'+slug+'/cover.'+ext;
+    uploads.push(function(){
+      return uploadImage(cf,rp).then(function(){
+        newP.coverImage='images/uploads/'+slug+'/cover.'+ext;
+        npCoverFile=null;
+      });
+    });
+  }
+
+  projectsData.push(newP);
+  setStatus('saving','Saving…');
+  uploads.reduce(function(c,f){return c.then(f);},Promise.resolve()).then(function(){
+    return ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Add project: '+title);
+  }).then(function(r){
+    if(r.content&&r.content.sha){
+      projectsSha=r.content.sha;
+      setStatus('ok','Saved');
+      toast('"'+title+'" added — site updates in ~1 min','success');
+      document.getElementById('np_title').value='';
+      document.getElementById('np_description').value='';
+      document.getElementById('np_featured').checked=false;
+      document.getElementById('np_tagsInput').querySelectorAll('.tag-chip').forEach(function(c){c.remove();});
+      var prev=document.getElementById('np_coverPreview');
+      if(prev&&prev.tagName==='IMG'){
+        var ph=document.createElement('div');ph.className='cover-placeholder';ph.id='np_coverPreview';ph.textContent='No photo yet';
+        prev.parentNode.replaceChild(ph,prev);
+      }
+      renderProjects();
+      document.querySelectorAll('.tab')[0].click();
+    } else {
+      projectsData.pop();
+      toast('Error: '+(r.message||'?'),'error');
+    }
+  }).catch(function(e){
+    projectsData.pop();
+    toast('Error: '+e.message,'error');
+  });
+}
+
+function populateCategorySelect(){
+  var sel=document.getElementById('np_category');sel.innerHTML='';
+  (settingsData.categories||['Professional','Academic','Personal']).forEach(function(c){
+    var o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);
+  });
+}
+
+// New project cover picker
+document.getElementById('np_coverFile').addEventListener('change',function(){
+  if(this.files&&this.files[0]){
+    npCoverFile=this.files[0];
+    previewCover(this,'np_coverPreview',null);
+  }
+});
+
+// ── TAGS ─────────────────────────────────────────────────────────────────────
+function tagChip(t){
+  return '<span class="tag-chip">'+esc(t)+'<button onclick="removeTag(this)">×</button></span>';
+}
 function handleTagKey(e,id){
   if(e.key==='Enter'||e.key===','){
     e.preventDefault();
-    var input=e.target;
-    var val=input.value.replace(',','').trim();
+    var val=e.target.value.replace(',','').trim();
     if(!val) return;
     var containerId=(id==='np')?'np_tagsInput':'tags_'+id;
     var chip=document.createElement('span');
     chip.className='tag-chip';
     chip.innerHTML=esc(val)+'<button onclick="removeTag(this)">×</button>';
     var container=document.getElementById(containerId);
-    container.insertBefore(chip,input);
-    input.value='';
+    container.insertBefore(chip,container.querySelector('input'));
+    e.target.value='';
   }
 }
-
-function removeTag(btn){
-  btn.parentNode.remove();
-}
-
-function saveProject(i){
-  var p=projectsData[i];
-  p.title=document.getElementById('pt_'+i).value.trim();
-  p.category=document.getElementById('pc_'+i).value;
-  p.description=document.getElementById('pd_'+i).value.trim();
-  p.featured=document.getElementById('pf_'+i).checked;
-  p.tags=getTagsFromContainer('tags_'+i);
-  setStatus('saving','Saving…');
-  var payload={projects:projectsData};
-  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Update project: '+p.title).then(function(r){
-    if(r.content && r.content.sha){
-      projectsSha=r.content.sha;
-      setStatus('ok','Saved!');
-      toast('"'+p.title+'" saved — site updates in ~1 minute','success');
-      renderProjects();
-    } else {
-      setStatus('','Save failed');
-      toast('Error: '+(r.message||'unknown'),'error');
-    }
-  });
-}
-
-function deleteProject(i){
-  var p=projectsData[i];
-  if(!confirm('Delete "'+p.title+'"? This cannot be undone.')) return;
-  projectsData.splice(i,1);
-  setStatus('saving','Saving…');
-  var payload={projects:projectsData};
-  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Delete project: '+p.title).then(function(r){
-    if(r.content && r.content.sha){
-      projectsSha=r.content.sha;
-      setStatus('ok','Saved!');
-      toast('"'+p.title+'" deleted','success');
-      renderProjects();
-    } else {
-      projectsData.splice(i,0,p);
-      toast('Delete failed: '+(r.message||'unknown'),'error');
-    }
-  });
-}
-
-function addNewProject(){
-  var title=document.getElementById('np_title').value.trim();
-  if(!title){alert('Please enter a project title.');return;}
-  var tags=getTagsFromContainer('np_tagsInput');
-  var slug=title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  var newP={
-    slug:slug,
-    title:title,
-    category:document.getElementById('np_category').value,
-    tags:tags,
-    description:document.getElementById('np_description').value.trim(),
-    featured:document.getElementById('np_featured').checked,
-    coverSvg:'',
-    coverImage:'',
-    gallery:[],
-    order:projectsData.length+1
-  };
-  projectsData.push(newP);
-  setStatus('saving','Saving…');
-  var payload={projects:projectsData};
-  ghPut(PROJECTS_PATH,JSON.stringify(payload,null,2),projectsSha,'Add project: '+title).then(function(r){
-    if(r.content && r.content.sha){
-      projectsSha=r.content.sha;
-      setStatus('ok','Saved!');
-      toast('"'+title+'" added — site updates in ~1 minute','success');
-      document.getElementById('np_title').value='';
-      document.getElementById('np_description').value='';
-      document.getElementById('np_featured').checked=false;
-      document.getElementById('np_tagsInput').querySelectorAll('.tag-chip').forEach(function(c){c.remove()});
-      renderProjects();
-      document.querySelector('.tab').click();
-    } else {
-      projectsData.pop();
-      toast('Error: '+(r.message||'unknown'),'error');
-    }
-  });
-}
-
-function populateCategorySelect(){
-  var sel=document.getElementById('np_category');
-  sel.innerHTML='';
-  (settingsData.categories||['Professional','Academic','Personal']).forEach(function(c){
-    var o=document.createElement('option');
-    o.value=c; o.textContent=c;
-    sel.appendChild(o);
-  });
+function removeTag(btn){btn.parentNode.remove();}
+function getTagsFrom(id){
+  return Array.from(document.getElementById(id).querySelectorAll('.tag-chip')).map(function(c){return c.childNodes[0].textContent.trim();});
 }
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
-function esc(s){
-  if(!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
+function v(id){return document.getElementById(id).value.trim();}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function setStatus(type,text){
-  var dot=document.getElementById('statusDot');
-  var t=document.getElementById('statusText');
-  dot.className='status-dot'+(type?' '+type:'');
-  t.textContent=text;
+  document.getElementById('statusDot').className='status-dot'+(type?' '+type:'');
+  document.getElementById('statusText').textContent=text;
 }
-
 function toast(msg,type){
   var el=document.getElementById('toast');
-  el.textContent=msg;
-  el.className='msg '+type+' show';
-  setTimeout(function(){el.classList.remove('show')},3500);
+  el.textContent=msg;el.className='msg '+type+' show';
+  setTimeout(function(){el.classList.remove('show');},3500);
 }
 </script>
 </body>
