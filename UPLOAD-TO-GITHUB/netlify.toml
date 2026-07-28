@@ -1,0 +1,24 @@
+# Netlify config — lives at the repository root.
+# The site itself is inside the malaknael-portfolio folder.
+
+[build]
+  publish = "malaknael-portfolio"
+  command = ""
+  functions = "netlify/functions"
+
+# Friendly URL for the admin panel's save/load bridge.
+[[redirects]]
+  from = "/api/cms"
+  to = "/.netlify/functions/cms"
+  status = 200
+
+# Always revalidate HTML and content JSON so edits show up promptly.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
