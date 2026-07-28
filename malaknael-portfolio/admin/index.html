@@ -265,16 +265,13 @@ input[type=file]{display:none}
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-var ADMIN_USER='malak';
-var ADMIN_PASS='Yassin123';
-var _a='k3fbEyKpTYa7T5Lfo',_b='JZzFI4o2Sih4D3voFFG';
-var GITHUB_TOKEN=['gh','p_',_a,_b].join('');
-var GITHUB_REPO='yassineldaour/malaknael';
-var GITHUB_BRANCH='main';
+// No password or token lives in this file. Both are kept privately on the
+// server (Netlify environment variables) and verified by /api/cms.
+var CMS_API='/api/cms';
+var CREDS={username:'',password:''};
 var SETTINGS_PATH='malaknael-portfolio/content/settings.json';
 var PROJECTS_PATH='malaknael-portfolio/content/projects.json';
 var IMG_BASE='malaknael-portfolio/images/uploads';
-var API='https://api.github.com/repos/'+GITHUB_REPO+'/contents/';
 
 // ── STATE ───────────────────────────────────────────────────────────────────
 var settingsSha=null,projectsSha=null;
@@ -288,17 +285,26 @@ var currentGalleryTarget=null; // project index for gallery picker
 function doLogin(){
   var u=document.getElementById('loginUser').value.trim();
   var p=document.getElementById('loginPass').value;
-  if(u===ADMIN_USER&&p===ADMIN_PASS){
-    document.getElementById('loginScreen').style.display='none';
-    var panel=document.getElementById('adminPanel');
-    panel.style.display='flex';
-    panel.style.flexDirection='column';
-    loadAll();
-  } else {
-    document.getElementById('loginError').textContent='Wrong username or password.';
-  }
+  var err=document.getElementById('loginError');
+  err.textContent='Checking…';
+  cmsCall({action:'login',username:u,password:p}).then(function(r){
+    if(r.ok===true){
+      CREDS.username=u;CREDS.password=p;
+      err.textContent='';
+      document.getElementById('loginScreen').style.display='none';
+      var panel=document.getElementById('adminPanel');
+      panel.style.display='flex';
+      panel.style.flexDirection='column';
+      loadAll();
+    } else {
+      err.textContent=r.error||'Wrong username or password.';
+    }
+  }).catch(function(e){
+    err.textContent='Could not reach the server. '+e.message;
+  });
 }
 function doLogout(){
+  CREDS.username='';CREDS.password='';
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('adminPanel').style.display='none';
   document.getElementById('loginPass').value='';
@@ -313,22 +319,25 @@ function showTab(name,el){
   });
 }
 
-// ── GITHUB API ───────────────────────────────────────────────────────────────
-function ghHeaders(){
-  return{'Authorization':'token '+GITHUB_TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
+// ── SERVER BRIDGE ────────────────────────────────────────────────────────────
+// Every read/write goes through /api/cms, which holds the GitHub token privately.
+function cmsCall(payload){
+  return fetch(CMS_API,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).then(function(r){return r.json()});
 }
 function ghGet(path){
-  return fetch(API+path+'?ref='+GITHUB_BRANCH,{headers:ghHeaders()}).then(function(r){return r.json()});
+  return cmsCall({action:'get',path:path,username:CREDS.username,password:CREDS.password});
 }
 function ghPut(path,content,sha,msg){
-  var body={message:msg,content:toB64(content),branch:GITHUB_BRANCH};
-  if(sha)body.sha=sha;
-  return fetch(API+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){return r.json()});
+  return cmsCall({action:'put',path:path,content:toB64(content),sha:sha,message:msg,
+    username:CREDS.username,password:CREDS.password});
 }
 function ghPutBinary(path,base64,sha,msg){
-  var body={message:msg,content:base64,branch:GITHUB_BRANCH};
-  if(sha)body.sha=sha;
-  return fetch(API+path,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)}).then(function(r){return r.json()});
+  return cmsCall({action:'put',path:path,content:base64,sha:sha,message:msg,
+    username:CREDS.username,password:CREDS.password});
 }
 function toB64(str){return btoa(unescape(encodeURIComponent(str)))}
 
@@ -476,7 +485,7 @@ function buildProjectForm(p,i){
   var tagsHtml=(p.tags||[]).map(function(t){return tagChip(t);}).join('');
 
   // Cover: existing coverImage or SVG note
-  var coverSrc=p.coverImage?('https://raw.githubusercontent.com/'+GITHUB_REPO+'/main/malaknael-portfolio/'+p.coverImage):'';
+  var coverSrc=p.coverImage?('/'+p.coverImage):'';
   var coverEl=coverSrc
     ?'<img class="cover-preview" id="cprev-'+i+'" src="'+coverSrc+'" alt="cover"/>'
     :'<div class="cover-placeholder" id="cprev-'+i+'">'+(p.coverSvg?'SVG cover (existing)':'No photo')+'</div>';
@@ -538,7 +547,7 @@ function buildProjectForm(p,i){
 function buildGalleryHtml(gallery,i){
   return gallery.map(function(item,gi){
     var src=item&&item.image?item.image:item;
-    var fullSrc='https://raw.githubusercontent.com/'+GITHUB_REPO+'/main/malaknael-portfolio/'+src;
+    var fullSrc='/'+src;
     return '<div class="gallery-thumb" id="gthumb-'+i+'-'+gi+'">'
       +'<img src="'+fullSrc+'" alt="gallery" loading="lazy"/>'
       +'<button class="del-thumb" onclick="removeGalleryItem('+i+','+gi+')" title="Remove">×</button>'
