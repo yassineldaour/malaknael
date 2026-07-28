@@ -4,7 +4,7 @@
 [build]
   publish = "malaknael-portfolio"
   command = ""
-  functions = "."
+  functions = "netlify/functions"
 
 # Friendly URL for the admin panel's save/load bridge.
 [[redirects]]
