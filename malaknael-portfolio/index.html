@@ -333,18 +333,27 @@ function render(settings,projects){
   initHeadline(settings.headlineName);
 }
 
-Promise.all([
-  fetch('content/settings.json').then(function(r){return r.json();}),
-  fetch('content/projects.json').then(function(r){return r.json();})
-]).then(function(res){
-  var data=res[1]||{};
-  var projects=Array.isArray(data)?data:(data.projects||[]);
-  render(res[0]||{},projects);
-}).catch(function(err){
-  console.error('Failed to load content',err);
-  // fallback so the headline still animates even if content fails
-  initHeadline('Malak Nael');
-});
+function unwrapProjects(data){
+  if(Array.isArray(data)) return data;
+  return (data&&data.projects)||[];
+}
+
+// Live content comes from the admin function. If that is ever unreachable, fall
+// back to the JSON committed alongside the site so the page still renders.
+fetch('/.netlify/functions/cms?action=content')
+  .then(function(r){if(!r.ok)throw new Error('status '+r.status);return r.json();})
+  .then(function(res){render(res.settings||{},unwrapProjects(res.projects));})
+  .catch(function(err){
+    console.warn('Live content unavailable, using bundled copy',err);
+    return Promise.all([
+      fetch('content/settings.json').then(function(r){return r.json();}),
+      fetch('content/projects.json').then(function(r){return r.json();})
+    ]).then(function(res){render(res[0]||{},unwrapProjects(res[1]));});
+  })
+  .catch(function(err){
+    console.error('Failed to load content',err);
+    initHeadline('Malak Nael');
+  });
 </script>
 </body>
 </html>
