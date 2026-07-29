@@ -1,82 +1,210 @@
-// Secure bridge between the admin panel and GitHub.
-// The GitHub token and admin password live in Netlify environment variables,
-// never in the browser. The panel sends credentials with each request; this
-// function checks them, then talks to GitHub on the panel's behalf.
+// Admin panel backend for malaknael.com — needs no configuration.
+//
+// Content and uploaded images are kept in Netlify Blobs, which is available to
+// this function automatically. There is no GitHub token and no environment
+// variable to set. The login password is stored only as a salted hash, so the
+// password itself exists nowhere on the server or in this repository.
+//
+// Routes (all on /.netlify/functions/cms):
+//   GET  ?action=content        -> public site content (falls back to the
+//                                 committed JSON files before the first edit)
+//   GET  ?action=img&key=...    -> an uploaded image
+//   POST                        -> admin actions, each carrying the password
+//
+// Deliberate design choice: content lives in Blobs rather than in git, so
+// saving is instant and never triggers a rebuild.
 
-const REPO = 'yassineldaour/malaknael';
-const BRANCH = 'main';
-const API = `https://api.github.com/repos/${REPO}/contents/`;
+import { getStore } from '@netlify/blobs';
 
-// Only content and image files inside the site folder may be read or written.
-const ALLOWED = /^malaknael-portfolio\/(content|images)\//;
+const STORE = 'malaknael-cms';
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return json(405, { error: 'Method not allowed' });
+const USERNAME = 'malak';
+
+// Used only until the owner sets their own password in the panel.
+const DEFAULT_PASSWORD = 'Yassin123';
+
+const CONTENT_KEYS = { settings: 'settings.json', projects: 'projects.json' };
+const AUTH_KEY = 'auth.json';
+const IMG_PREFIX = 'img/';
+
+// ---------------------------------------------------------------- helpers
+
+const json = (body, status = 200) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+  });
+
+function store() {
+  return getStore({ name: STORE, consistency: 'strong' });
+}
+
+async function sha256(text) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function randomSalt() {
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Reads the stored credential, creating it from the default on first use.
+async function loadAuth(s) {
+  const existing = await s.get(AUTH_KEY, { type: 'json' });
+  if (existing) return existing;
+  const salt = randomSalt();
+  const fresh = { salt, hash: await sha256(salt + DEFAULT_PASSWORD) };
+  await s.setJSON(AUTH_KEY, fresh);
+  return fresh;
+}
+
+async function checkPassword(s, password) {
+  if (typeof password !== 'string' || !password) return false;
+  const auth = await loadAuth(s);
+  return (await sha256(auth.salt + password)) === auth.hash;
+}
+
+// Before the first save, fall back to the JSON committed in the repo so the
+// site keeps rendering exactly as it does today.
+async function readContent(s, which) {
+  const fromBlobs = await s.get(CONTENT_KEYS[which], { type: 'json' });
+  if (fromBlobs) return fromBlobs;
+  const base = process.env.URL || 'https://malaknael.com';
+  try {
+    const r = await fetch(`${base}/content/${which}.json`);
+    if (r.ok) return await r.json();
+  } catch (e) {
+    // fall through to an empty shape
+  }
+  return which === 'projects' ? { projects: [] } : {};
+}
+
+// ---------------------------------------------------------------- GET
+
+async function handleGet(url) {
+  const action = url.searchParams.get('action');
+  const s = store();
+
+  if (action === 'content') {
+    const [settings, projects] = await Promise.all([
+      readContent(s, 'settings'),
+      readContent(s, 'projects'),
+    ]);
+    return json({ settings, projects });
   }
 
-  const TOKEN = process.env.GH_TOKEN;
-  const PASSWORD = process.env.ADMIN_PASSWORD;
-  const USERNAME = process.env.ADMIN_USERNAME || 'malak';
-
-  if (!TOKEN || !PASSWORD) {
-    return json(500, { error: 'Server not configured. Set GH_TOKEN and ADMIN_PASSWORD in Netlify.' });
+  if (action === 'img') {
+    const key = url.searchParams.get('key') || '';
+    if (!key.startsWith(IMG_PREFIX) || key.includes('..')) {
+      return json({ error: 'Bad image key' }, 400);
+    }
+    const blob = await s.getWithMetadata(key, { type: 'arrayBuffer' });
+    if (!blob) return json({ error: 'Not found' }, 404);
+    return new Response(blob.data, {
+      headers: {
+        'Content-Type': (blob.metadata && blob.metadata.contentType) || 'image/jpeg',
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    });
   }
 
+  return json({ error: 'Unknown action' }, 400);
+}
+
+// ---------------------------------------------------------------- POST
+
+async function handlePost(req) {
   let body;
   try {
-    body = JSON.parse(event.body || '{}');
+    body = await req.json();
   } catch (e) {
-    return json(400, { error: 'Bad request' });
+    return json({ error: 'Bad request' }, 400);
   }
 
-  if (body.username !== USERNAME || body.password !== PASSWORD) {
-    return json(401, { error: 'Wrong username or password' });
+  const s = store();
+  if (body.username !== USERNAME || !(await checkPassword(s, body.password))) {
+    return json({ error: 'Wrong username or password' }, 401);
   }
 
-  const headers = {
-    Authorization: `token ${TOKEN}`,
-    Accept: 'application/vnd.github.v3+json',
-    'Content-Type': 'application/json',
-    'User-Agent': 'malaknael-admin',
-  };
+  switch (body.action) {
+    case 'login':
+      return json({ ok: true });
 
-  const pathOk = (p) => typeof p === 'string' && ALLOWED.test(p) && !p.includes('..');
+    case 'load': {
+      const [settings, projects] = await Promise.all([
+        readContent(s, 'settings'),
+        readContent(s, 'projects'),
+      ]);
+      return json({ ok: true, settings, projects });
+    }
 
-  if (body.action === 'login') {
-    return json(200, { ok: true });
+    case 'saveSettings': {
+      if (!body.settings || typeof body.settings !== 'object') {
+        return json({ error: 'Missing settings' }, 400);
+      }
+      await s.setJSON(CONTENT_KEYS.settings, body.settings);
+      return json({ ok: true });
+    }
+
+    case 'saveProjects': {
+      if (!Array.isArray(body.projects)) {
+        return json({ error: 'Missing projects' }, 400);
+      }
+      await s.setJSON(CONTENT_KEYS.projects, { projects: body.projects });
+      return json({ ok: true });
+    }
+
+    case 'uploadImage': {
+      // dataUrl looks like "data:image/jpeg;base64,AAAA..."
+      const m = /^data:([\w/+.-]+);base64,(.+)$/.exec(body.dataUrl || '');
+      if (!m) return json({ error: 'Bad image data' }, 400);
+      const contentType = m[1];
+      if (!contentType.startsWith('image/')) {
+        return json({ error: 'Only images are allowed' }, 400);
+      }
+      const bytes = Uint8Array.from(atob(m[2]), (c) => c.charCodeAt(0));
+      if (bytes.length > 8 * 1024 * 1024) {
+        return json({ error: 'Image is larger than 8 MB' }, 400);
+      }
+      const safeName = String(body.name || 'photo')
+        .toLowerCase()
+        .replace(/[^a-z0-9.]+/g, '-')
+        .slice(-60);
+      const key = `${IMG_PREFIX}${Date.now()}-${safeName}`;
+      await s.set(key, bytes, { metadata: { contentType } });
+      return json({
+        ok: true,
+        key,
+        url: `/.netlify/functions/cms?action=img&key=${encodeURIComponent(key)}`,
+      });
+    }
+
+    case 'changePassword': {
+      const next = body.newPassword;
+      if (typeof next !== 'string' || next.length < 6) {
+        return json({ error: 'New password must be at least 6 characters' }, 400);
+      }
+      const salt = randomSalt();
+      await s.setJSON(AUTH_KEY, { salt, hash: await sha256(salt + next) });
+      return json({ ok: true });
+    }
+
+    default:
+      return json({ error: 'Unknown action' }, 400);
   }
-
-  if (body.action === 'get') {
-    if (!pathOk(body.path)) return json(400, { error: 'Path not allowed' });
-    const r = await fetch(`${API}${body.path}?ref=${BRANCH}`, { headers });
-    return json(r.status, await r.json());
-  }
-
-  if (body.action === 'put') {
-    if (!pathOk(body.path)) return json(400, { error: 'Path not allowed' });
-    if (typeof body.content !== 'string') return json(400, { error: 'Missing content' });
-    const payload = {
-      message: body.message || 'Update from admin panel',
-      content: body.content,
-      branch: BRANCH,
-    };
-    if (body.sha) payload.sha = body.sha;
-    const r = await fetch(`${API}${body.path}`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(payload),
-    });
-    return json(r.status, await r.json());
-  }
-
-  return json(400, { error: 'Unknown action' });
-};
-
-function json(statusCode, obj) {
-  return {
-    statusCode,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(obj),
-  };
 }
+
+// ---------------------------------------------------------------- entry
+
+export default async (req) => {
+  try {
+    const url = new URL(req.url);
+    if (req.method === 'GET') return await handleGet(url);
+    if (req.method === 'POST') return await handlePost(req);
+    return json({ error: 'Method not allowed' }, 405);
+  } catch (err) {
+    return json({ error: 'Server error: ' + (err && err.message) }, 500);
+  }
+};
