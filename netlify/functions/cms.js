@@ -71,12 +71,23 @@ async function checkPassword(s, password) {
 async function readContent(s, which) {
   const fromBlobs = await s.get(CONTENT_KEYS[which], { type: 'json' });
   if (fromBlobs) return fromBlobs;
-  const base = process.env.URL || 'https://malaknael.com';
-  try {
-    const r = await fetch(`${base}/content/${which}.json`);
-    if (r.ok) return await r.json();
-  } catch (e) {
-    // fall through to an empty shape
+
+  // Try the Netlify-internal hostnames before the public one: the public domain
+  // sits behind a proxy that can block or loop a request coming from here.
+  const bases = [
+    process.env.DEPLOY_URL,
+    process.env.DEPLOY_PRIME_URL,
+    process.env.URL,
+    'https://malaknael.netlify.app',
+  ].filter(Boolean);
+
+  for (const base of bases) {
+    try {
+      const r = await fetch(`${base}/content/${which}.json`);
+      if (r.ok) return await r.json();
+    } catch (e) {
+      // try the next hostname
+    }
   }
   return which === 'projects' ? { projects: [] } : {};
 }
