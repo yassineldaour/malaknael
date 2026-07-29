@@ -203,6 +203,16 @@ input[type=file]{display:none}
         <div id="catsList"></div>
         <button class="add-btn" onclick="addCat()">+ Add category</button>
       </div>
+      <p class="section-title" style="margin-top:32px">Your Password</p>
+      <div class="form-group">
+        <label>Change login password</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <input type="password" id="newPass" placeholder="New password (min 6 characters)" style="flex:1;min-width:220px"/>
+          <button class="btn btn-outline btn-sm" style="margin-top:0" onclick="changePassword()">Update</button>
+        </div>
+        <div class="hint">Only you can see this. It is stored scrambled, never as plain text.</div>
+      </div>
+
       <div class="save-bar">
         <button class="btn btn-accent" style="width:auto;padding:12px 32px" onclick="saveSettings()">Save Changes</button>
       </div>
@@ -265,21 +275,16 @@ input[type=file]{display:none}
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-// No password or token lives in this file. Both are kept privately on the
-// server (Netlify environment variables) and verified by /api/cms.
+// Nothing secret lives in this file. The password is verified by the server,
+// which stores only a salted hash of it.
 var CMS_API='/.netlify/functions/cms';
 var CREDS={username:'',password:''};
-var SETTINGS_PATH='malaknael-portfolio/content/settings.json';
-var PROJECTS_PATH='malaknael-portfolio/content/projects.json';
-var IMG_BASE='malaknael-portfolio/images/uploads';
 
 // ── STATE ───────────────────────────────────────────────────────────────────
-var settingsSha=null,projectsSha=null;
 var settingsData={},projectsData=[];
-var activeCoverFile={};   // {projectIndex: File}
-var activeGalleryFiles={}; // {projectIndex: [File,...]}
-var activeGalleryPending={}; // {projectIndex: [{file,previewUrl},...]}
-var currentGalleryTarget=null; // project index for gallery picker
+var activeCoverFile={};      // {projectIndex: File}
+var activeGalleryPending={}; // {projectIndex: [{file}|null,...]}
+var currentGalleryTarget=null;
 
 // ── LOGIN ───────────────────────────────────────────────────────────────────
 function doLogin(){
@@ -320,7 +325,8 @@ function showTab(name,el){
 }
 
 // ── SERVER BRIDGE ────────────────────────────────────────────────────────────
-// Every read/write goes through /api/cms, which holds the GitHub token privately.
+// Every read/write goes through the site's own function. Saving is immediate —
+// there is no rebuild to wait for.
 function cmsCall(payload){
   return fetch(CMS_API,{
     method:'POST',
@@ -328,34 +334,27 @@ function cmsCall(payload){
     body:JSON.stringify(payload)
   }).then(function(r){return r.json()});
 }
-function ghGet(path){
-  return cmsCall({action:'get',path:path,username:CREDS.username,password:CREDS.password});
+function auth(extra){
+  extra.username=CREDS.username;
+  extra.password=CREDS.password;
+  return extra;
 }
-function ghPut(path,content,sha,msg){
-  return cmsCall({action:'put',path:path,content:toB64(content),sha:sha,message:msg,
-    username:CREDS.username,password:CREDS.password});
+function saveProjectsToServer(){
+  return cmsCall(auth({action:'saveProjects',projects:projectsData}));
 }
-function ghPutBinary(path,base64,sha,msg){
-  return cmsCall({action:'put',path:path,content:base64,sha:sha,message:msg,
-    username:CREDS.username,password:CREDS.password});
-}
-function toB64(str){return btoa(unescape(encodeURIComponent(str)))}
 
 // ── UPLOAD IMAGE ──────────────────────────────────────────────────────────────
-function uploadImage(file,repoPath){
+// Resolves to the public URL the uploaded image is served from.
+function uploadImage(file){
   return new Promise(function(resolve,reject){
     var reader=new FileReader();
+    reader.onerror=function(){reject(new Error('Could not read that file'))};
     reader.onload=function(e){
-      var base64=e.target.result.split(',')[1];
-      // get existing sha if any
-      ghGet(repoPath).then(function(ex){
-        return ghPutBinary(repoPath,base64,ex.sha||null,'Upload image: '+repoPath.split('/').pop());
-      }).catch(function(){
-        return ghPutBinary(repoPath,base64,null,'Upload image: '+repoPath.split('/').pop());
-      }).then(function(r){
-        if(r.content){resolve();}
-        else{reject(new Error(r.message||'Upload failed'));}
-      }).catch(reject);
+      cmsCall(auth({action:'uploadImage',dataUrl:e.target.result,name:file.name}))
+        .then(function(r){
+          if(r&&r.ok&&r.url) resolve(r.url);
+          else reject(new Error((r&&r.error)||'Upload failed'));
+        }).catch(reject);
     };
     reader.readAsDataURL(file);
   });
@@ -364,14 +363,11 @@ function uploadImage(file,repoPath){
 // ── LOAD ──────────────────────────────────────────────────────────────────────
 function loadAll(){
   setStatus('saving','Loading…');
-  Promise.all([ghGet(SETTINGS_PATH),ghGet(PROJECTS_PATH)]).then(function(res){
-    var s=res[0],p=res[1];
-    if(s.message||p.message){setStatus('','Error: '+(s.message||p.message));return;}
-    settingsSha=s.sha;
-    projectsSha=p.sha;
-    settingsData=JSON.parse(decodeURIComponent(escape(atob(s.content.replace(/\n/g,'')))));
-    var pd=JSON.parse(decodeURIComponent(escape(atob(p.content.replace(/\n/g,'')))));
-    projectsData=Array.isArray(pd)?pd:(pd.projects||[]);
+  cmsCall(auth({action:'load'})).then(function(r){
+    if(!r||!r.ok){setStatus('','Error: '+((r&&r.error)||'could not load'));return;}
+    settingsData=r.settings||{};
+    var pd=r.projects;
+    projectsData=Array.isArray(pd)?pd:((pd&&pd.projects)||[]);
     renderSettings();
     renderProjects();
     populateCategorySelect();
@@ -442,10 +438,28 @@ function saveSettings(){
     heroCardSub:v('s_heroCardSub'),categories:getCats()
   };
   setStatus('saving','Saving…');
-  ghPut(SETTINGS_PATH,JSON.stringify(d,null,2),settingsSha,'Update settings').then(function(r){
-    if(r.content&&r.content.sha){settingsSha=r.content.sha;settingsData=d;setStatus('ok','Saved');toast('Settings saved — site updates in ~1 min','success');}
-    else{setStatus('','Error');toast('Error: '+(r.message||'?'),'error');}
-  });
+  cmsCall(auth({action:'saveSettings',settings:d})).then(function(r){
+    if(r&&r.ok){settingsData=d;setStatus('ok','Saved');toast('Saved — refresh your site to see it','success');}
+    else{setStatus('','Error');toast('Error: '+((r&&r.error)||'?'),'error');}
+  }).catch(function(e){setStatus('','Error');toast('Error: '+e.message,'error');});
+}
+
+function changePassword(){
+  var box=document.getElementById('newPass');
+  var next=box.value;
+  if(!next||next.length<6){toast('Password must be at least 6 characters','error');return;}
+  setStatus('saving','Updating…');
+  cmsCall(auth({action:'changePassword',newPassword:next})).then(function(r){
+    if(r&&r.ok){
+      CREDS.password=next;   // stay logged in with the new password
+      box.value='';
+      setStatus('ok','Saved');
+      toast('Password updated','success');
+    } else {
+      setStatus('','Error');
+      toast('Error: '+((r&&r.error)||'?'),'error');
+    }
+  }).catch(function(e){setStatus('','Error');toast('Error: '+e.message,'error');});
 }
 
 // ── PROJECTS ──────────────────────────────────────────────────────────────────
@@ -485,7 +499,7 @@ function buildProjectForm(p,i){
   var tagsHtml=(p.tags||[]).map(function(t){return tagChip(t);}).join('');
 
   // Cover: existing coverImage or SVG note
-  var coverSrc=p.coverImage?('/'+p.coverImage):'';
+  var coverSrc=p.coverImage?imgUrl(p.coverImage):'';
   var coverEl=coverSrc
     ?'<img class="cover-preview" id="cprev-'+i+'" src="'+coverSrc+'" alt="cover"/>'
     :'<div class="cover-placeholder" id="cprev-'+i+'">'+(p.coverSvg?'SVG cover (existing)':'No photo')+'</div>';
@@ -547,7 +561,7 @@ function buildProjectForm(p,i){
 function buildGalleryHtml(gallery,i){
   return gallery.map(function(item,gi){
     var src=item&&item.image?item.image:item;
-    var fullSrc='/'+src;
+    var fullSrc=imgUrl(src);
     return '<div class="gallery-thumb" id="gthumb-'+i+'-'+gi+'">'
       +'<img src="'+fullSrc+'" alt="gallery" loading="lazy"/>'
       +'<button class="del-thumb" onclick="removeGalleryItem('+i+','+gi+')" title="Remove">×</button>'
@@ -645,57 +659,49 @@ function saveProject(i){
   p.featured=document.getElementById('pf_'+i).checked;
   p.tags=getTagsFrom('tags_'+i);
 
-  var slug=p.slug||p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-');
   var uploads=[];
   var prog=document.getElementById('cprog-'+i);
 
-  // Queue cover upload
+  // Queue the cover photo, if a new one was chosen
   if(activeCoverFile[i]){
     var coverFile=activeCoverFile[i];
-    var ext=coverFile.name.split('.').pop().toLowerCase()||'jpg';
-    var coverRepoPath=IMG_BASE+'/'+slug+'/cover.'+ext;
     uploads.push(function(){
       if(prog) prog.textContent='Uploading cover…';
-      return uploadImage(coverFile,coverRepoPath).then(function(){
-        p.coverImage='images/uploads/'+slug+'/cover.'+ext;
+      return uploadImage(coverFile).then(function(url){
+        p.coverImage=url;
         p.coverSvg='';
         delete activeCoverFile[i];
       });
     });
   }
 
-  // Queue gallery uploads
+  // Queue any newly added gallery photos
   var pending=(activeGalleryPending[i]||[]).filter(Boolean);
   pending.forEach(function(item,k){
-    var file=item.file;
-    var ext=file.name.split('.').pop().toLowerCase()||'jpg';
-    var ts=Date.now()+k;
-    var galRepoPath=IMG_BASE+'/'+slug+'/gallery-'+ts+'.'+ext;
     uploads.push(function(){
       if(prog) prog.textContent='Uploading photo '+(k+1)+'/'+pending.length+'…';
-      return uploadImage(file,galRepoPath).then(function(){
+      return uploadImage(item.file).then(function(url){
         if(!p.gallery) p.gallery=[];
-        p.gallery.push({image:'images/uploads/'+slug+'/gallery-'+ts+'.'+ext,caption:''});
+        p.gallery.push({image:url,caption:''});
       });
     });
   });
 
-  setStatus('saving','Uploading…');
+  setStatus('saving',uploads.length?'Uploading…':'Saving…');
 
-  // Run uploads sequentially then save JSON
+  // Upload one at a time, then store the project list
   uploads.reduce(function(chain,fn){return chain.then(fn);},Promise.resolve()).then(function(){
     activeGalleryPending[i]=[];
     if(prog) prog.textContent='';
-    return ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Update project: '+p.title);
+    return saveProjectsToServer();
   }).then(function(r){
-    if(r.content&&r.content.sha){
-      projectsSha=r.content.sha;
+    if(r&&r.ok){
       setStatus('ok','Saved');
-      toast('"'+p.title+'" saved — site updates in ~1 min','success');
+      toast('"'+p.title+'" saved — refresh your site to see it','success');
       renderProjects();
     } else {
       setStatus('','Error');
-      toast('Error: '+(r.message||'?'),'error');
+      toast('Error: '+((r&&r.error)||'?'),'error');
     }
   }).catch(function(e){
     setStatus('','Error');
@@ -708,16 +714,20 @@ function deleteProject(i){
   if(!confirm('Delete "'+p.title+'"? Cannot be undone.')) return;
   projectsData.splice(i,1);
   setStatus('saving','Saving…');
-  ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Delete project: '+p.title).then(function(r){
-    if(r.content&&r.content.sha){
-      projectsSha=r.content.sha;
+  saveProjectsToServer().then(function(r){
+    if(r&&r.ok){
       setStatus('ok','Saved');
       toast('"'+p.title+'" deleted','success');
       renderProjects();
     } else {
       projectsData.splice(i,0,p);
-      toast('Error: '+(r.message||'?'),'error');
+      setStatus('','Error');
+      toast('Error: '+((r&&r.error)||'?'),'error');
     }
+  }).catch(function(e){
+    projectsData.splice(i,0,p);
+    setStatus('','Error');
+    toast('Error: '+e.message,'error');
   });
 }
 
@@ -735,11 +745,9 @@ function addNewProject(){
   var uploads=[];
   if(npCoverFile){
     var cf=npCoverFile;
-    var ext=cf.name.split('.').pop().toLowerCase()||'jpg';
-    var rp=IMG_BASE+'/'+slug+'/cover.'+ext;
     uploads.push(function(){
-      return uploadImage(cf,rp).then(function(){
-        newP.coverImage='images/uploads/'+slug+'/cover.'+ext;
+      return uploadImage(cf).then(function(url){
+        newP.coverImage=url;
         npCoverFile=null;
       });
     });
@@ -748,12 +756,11 @@ function addNewProject(){
   projectsData.push(newP);
   setStatus('saving','Saving…');
   uploads.reduce(function(c,f){return c.then(f);},Promise.resolve()).then(function(){
-    return ghPut(PROJECTS_PATH,JSON.stringify({projects:projectsData},null,2),projectsSha,'Add project: '+title);
+    return saveProjectsToServer();
   }).then(function(r){
-    if(r.content&&r.content.sha){
-      projectsSha=r.content.sha;
+    if(r&&r.ok){
       setStatus('ok','Saved');
-      toast('"'+title+'" added — site updates in ~1 min','success');
+      toast('"'+title+'" added — refresh your site to see it','success');
       document.getElementById('np_title').value='';
       document.getElementById('np_description').value='';
       document.getElementById('np_featured').checked=false;
@@ -767,10 +774,12 @@ function addNewProject(){
       document.querySelectorAll('.tab')[0].click();
     } else {
       projectsData.pop();
-      toast('Error: '+(r.message||'?'),'error');
+      setStatus('','Error');
+      toast('Error: '+((r&&r.error)||'?'),'error');
     }
   }).catch(function(e){
     projectsData.pop();
+    setStatus('','Error');
     toast('Error: '+e.message,'error');
   });
 }
@@ -815,6 +824,12 @@ function getTagsFrom(id){
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function v(id){return document.getElementById(id).value.trim();}
+// Photos uploaded here are already absolute URLs; the original ones committed
+// with the site are repo-relative paths.
+function imgUrl(src){
+  if(!src) return '';
+  return (src.charAt(0)==='/'||/^https?:/.test(src))?src:('/'+src);
+}
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function setStatus(type,text){
   document.getElementById('statusDot').className='status-dot'+(type?' '+type:'');
