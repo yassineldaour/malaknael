@@ -338,11 +338,17 @@ function unwrapProjects(data){
   return (data&&data.projects)||[];
 }
 
-// Live content comes from the admin function. If that is ever unreachable, fall
-// back to the JSON committed alongside the site so the page still renders.
+// Live content comes from the admin function. If that is unreachable OR comes
+// back empty, fall back to the JSON committed alongside the site so the page
+// never renders blank.
 fetch('/.netlify/functions/cms?action=content')
   .then(function(r){if(!r.ok)throw new Error('status '+r.status);return r.json();})
-  .then(function(res){render(res.settings||{},unwrapProjects(res.projects));})
+  .then(function(res){
+    var settings=res.settings||{};
+    var projects=unwrapProjects(res.projects);
+    if(!settings.headlineName&&!projects.length) throw new Error('live content is empty');
+    render(settings,projects);
+  })
   .catch(function(err){
     console.warn('Live content unavailable, using bundled copy',err);
     return Promise.all([
